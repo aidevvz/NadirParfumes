@@ -56,6 +56,10 @@ Stripe-Webhooks lokal testen: `stripe listen --forward-to localhost:3000/api/str
 7. Domain verbinden; HTTPS und die 301-Weiterleitung von http laufen bei Vercel automatisch.
 8. Google Search Console: Domain bestätigen, `https://<domain>/sitemap.xml` einreichen. Produktseiten im [Rich Results Test](https://search.google.com/test/rich-results) prüfen.
 
+## Alternative: Netlify
+
+`netlify.toml` ist enthalten. Unter Site configuration → Environment variables alle Werte aus `.env.example` eintragen, mindestens `DATABASE_URL` (Scope: Builds **und** Functions). Datenbank z. B. über Netlify DB oder Neon (Region Frankfurt). Bild-Upload nutzt Vercel Blob und funktioniert mit einem `BLOB_READ_WRITE_TOKEN` auch auf Netlify. Der Build selbst braucht keine Datenbank; Seiten mit Produktdaten werden zur Laufzeit gerendert.
+
 ## Offene Punkte und Hinweise
 
 - **Shopname**: steht zentral in `src/lib/config.ts` (`shop.name`, `shop.brand`). Logo-Schriftzug „NADIR“ steht außerdem in `Header.tsx`, `Footer.tsx`, `Flakon.tsx`.

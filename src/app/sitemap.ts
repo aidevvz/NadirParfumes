@@ -4,7 +4,7 @@ import { shop, categories } from "@/lib/config";
 import { articles } from "@/lib/content";
 import { productPath } from "@/lib/catalog";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await db.product.findMany({ where: { active: true }, select: { slug: true, brandSlug: true, updatedAt: true } });

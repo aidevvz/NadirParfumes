@@ -4,7 +4,7 @@ import { articles, faqs } from "@/lib/content";
 import { productPath } from "@/lib/catalog";
 import { euro } from "@/lib/money";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 /** llms.txt (llmstxt.org): kompakte Übersicht für KI-Assistenten und Antwortmaschinen. */
 export async function GET() {

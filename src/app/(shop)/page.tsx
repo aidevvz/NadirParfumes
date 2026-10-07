@@ -9,7 +9,8 @@ import { faqs, articles } from "@/lib/content";
 import { faqLd } from "@/lib/seo";
 import { euro } from "@/lib/money";
 
-export const revalidate = 300;
+// Zur Laufzeit rendern: Build braucht so keine Datenbank, Daten sind immer aktuell.
+export const dynamic = "force-dynamic";
 
 export const metadata = { alternates: { canonical: "/" } };
 
