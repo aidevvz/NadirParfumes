@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { categoryImage } from "@/lib/images";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";
 import { Filters } from "@/components/Filters";
@@ -50,6 +52,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     title: seoText[slug].title,
     description: `${categories[key].intro} ${seoText[slug].text[0]}`.slice(0, 158),
     alternates: { canonical: `/kategorie/${slug}` },
+    openGraph: { images: [categoryImage[key].src] },
   };
 }
 
@@ -74,8 +77,15 @@ export default async function CategoryPage({ params, searchParams }: { params: P
       <nav aria-label="Brotkrumen" className="text-sm text-mist">
         <Link href="/" className="hover:text-gold-deep">Start</Link> / <Link href="/parfums" className="hover:text-gold-deep">Düfte</Link> / {cat.label}
       </nav>
-      <h1 className="mt-6 text-5xl md:text-6xl">{cat.label}</h1>
-      <p className="mt-4 max-w-xl text-mist">{cat.intro}</p>
+      <div className="mt-6 grid items-end gap-8 md:grid-cols-[1fr_1.2fr] md:gap-16">
+        <div>
+          <h1 className="text-5xl md:text-7xl">{cat.label}</h1>
+          <p className="mt-4 max-w-md text-lg text-mist">{cat.intro}</p>
+        </div>
+        <div className="relative aspect-[16/9] overflow-hidden bg-veil">
+          <Image src={categoryImage[key].src} alt={categoryImage[key].alt} fill priority sizes="(min-width: 768px) 55vw, 100vw" className="object-cover" />
+        </div>
+      </div>
       <div className="mt-10">
         <Filters action={`/kategorie/${slug}`} values={sp} hideCategory />
       </div>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { images } from "@/lib/images";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { articles } from "@/lib/content";
@@ -16,7 +18,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params;
   const a = articles.find((x) => x.slug === slug);
   if (!a) return {};
-  return { title: a.title, description: a.description, alternates: { canonical: `/ratgeber/${a.slug}` }, openGraph: { type: "article", title: a.title, description: a.description } };
+  return { title: a.title, description: a.description, alternates: { canonical: `/ratgeber/${a.slug}` }, openGraph: { type: "article", title: a.title, description: a.description, images: [images[a.image].src] } };
 }
 
 export default async function Article({ params }: { params: Params }) {
@@ -28,7 +30,9 @@ export default async function Article({ params }: { params: Params }) {
       <nav aria-label="Brotkrumen" className="text-sm text-mist"><Link href="/ratgeber" className="hover:text-gold-deep">Ratgeber</Link></nav>
       <h1 className="mt-6 text-4xl md:text-5xl">{a.title}</h1>
       <p className="mt-4 text-sm text-mist"><time dateTime={a.date}>{new Intl.DateTimeFormat("de-AT", { dateStyle: "long" }).format(new Date(a.date))}</time></p>
-      <div className="gold-rule mt-8 w-16" />
+      <div className="relative mt-10 aspect-[3/2] overflow-hidden bg-veil">
+        <Image src={images[a.image].src} alt={images[a.image].alt} fill priority sizes="(min-width: 768px) 672px, 100vw" className="object-cover" />
+      </div>
       <div className="prose-shop mt-8 text-[1.075rem] leading-[1.75]">
         {a.body.map((b, i) => (
           <section key={i}>
@@ -42,7 +46,7 @@ export default async function Article({ params }: { params: Params }) {
         <p className="mt-2 text-mist">Alle Düfte lassen sich nach Familie, Größe und Preis filtern.</p>
         <Link href="/parfums" className="btn btn-solid mt-5">Düfte ansehen</Link>
       </div>
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: a.title, description: a.description, datePublished: a.date, author: { "@type": "Organization", name: shop.name }, publisher: { "@type": "Organization", name: shop.name }, mainEntityOfPage: `${shop.url}/ratgeber/${a.slug}` }} />
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Article", headline: a.title, description: a.description, image: `${shop.url}${images[a.image].src}`, datePublished: a.date, author: { "@type": "Organization", name: shop.name }, publisher: { "@type": "Organization", name: shop.name }, mainEntityOfPage: `${shop.url}/ratgeber/${a.slug}` }} />
       <JsonLd data={breadcrumbLd([["Start", "/"], ["Ratgeber", "/ratgeber"], [a.title, `/ratgeber/${a.slug}`]])} />
     </article>
   );

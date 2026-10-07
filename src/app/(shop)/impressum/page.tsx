@@ -40,6 +40,8 @@ export default function Impressum() {
         Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
         teilzunehmen. [Alternativ: Beitritt zur Internet Ombudsstelle, www.ombudsstelle.at.]
       </p>
+      <h2>Bildnachweis</h2>
+      <p>Stimmungsbilder: <a href="https://unsplash.com">Unsplash</a>, verwendet unter der Unsplash-Lizenz. Produktabbildungen: {shop.name}.</p>
       <h2>Offenlegung nach § 25 MedienG</h2>
       <p>Medieninhaber: [Firmenname]. Grundlegende Richtung: Information über und Verkauf von Parfums der Marke {shop.brand}.</p>
     </LegalPage>

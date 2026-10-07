@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Flakon } from "@/components/Flakon";
 import { ProductCard } from "@/components/ProductCard";
 import { JsonLd } from "@/components/JsonLd";
 import { db } from "@/lib/db";
@@ -8,6 +8,7 @@ import { categories, shipping, type CategoryKey } from "@/lib/config";
 import { faqs, articles } from "@/lib/content";
 import { faqLd } from "@/lib/seo";
 import { euro } from "@/lib/money";
+import { images, categoryImage } from "@/lib/images";
 
 // Zur Laufzeit rendern: Build braucht so keine Datenbank, Daten sind immer aktuell.
 export const dynamic = "force-dynamic";
@@ -57,9 +58,16 @@ export default async function Home() {
           </div>
         </div>
         <div className="relative order-1 md:order-2">
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-[300px] bg-veil md:max-w-[520px]">
-            <div className="absolute inset-6 border border-gold/40" aria-hidden />
-            <Flakon color="#C9A25E" label="AMBRE DE NUIT" hero className="absolute inset-0 m-auto h-[74%] w-auto" title="Flakon Ambre de Nuit" />
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-[360px] overflow-hidden bg-veil md:max-w-[540px]">
+            <Image
+              src={images.hero.src}
+              alt={images.hero.alt}
+              fill
+              priority
+              sizes="(min-width: 768px) 540px, 360px"
+              className="object-cover"
+            />
+            <div className="pointer-events-none absolute inset-5 border border-paper/60" aria-hidden />
           </div>
         </div>
       </section>
@@ -146,20 +154,32 @@ export default async function Home() {
       {/* Kategorien */}
       <section className="mx-auto mt-28 max-w-7xl px-5 md:mt-40 md:px-10">
         <h2 className="text-4xl md:text-5xl">Für wen</h2>
-        <div className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4 lg:gap-x-8">
           {(Object.keys(categories) as CategoryKey[]).map((k) => (
-            <Link key={k} href={`/kategorie/${categories[k].slug}`} className="group bg-paper p-8 transition-colors hover:bg-veil">
-              <h3 className="text-3xl group-hover:text-gold-deep">{categories[k].label}</h3>
-              <p className="mt-3 text-sm text-mist">{categories[k].intro}</p>
+            <Link key={k} href={`/kategorie/${categories[k].slug}`} className="group block">
+              <div className="relative aspect-[4/5] overflow-hidden bg-veil">
+                <Image
+                  src={categoryImage[k].src}
+                  alt={categoryImage[k].alt}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, 50vw"
+                  className="object-cover transition-transform duration-700 ease-[var(--ease-silk)] group-hover:scale-[1.03]"
+                />
+              </div>
+              <h3 className="mt-4 text-3xl group-hover:text-gold-deep">{categories[k].label}</h3>
+              <p className="mt-2 text-sm text-mist">{categories[k].intro}</p>
             </Link>
           ))}
         </div>
       </section>
 
       {/* Herkunft */}
-      <section className="mx-auto mt-28 grid max-w-7xl gap-10 px-5 md:mt-40 md:grid-cols-2 md:gap-20 md:px-10">
-        <h2 className="text-4xl md:text-5xl">Direkt von der Marke, ohne Umweg</h2>
+      <section className="mx-auto mt-28 grid max-w-7xl items-center gap-10 px-5 md:mt-40 md:grid-cols-2 md:gap-20 md:px-10">
+        <div className="relative aspect-[4/5] overflow-hidden bg-veil">
+          <Image src={images.shadow.src} alt={images.shadow.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+        </div>
         <div className="space-y-5 text-mist">
+          <h2 className="mb-8 text-4xl text-ink md:text-5xl">Direkt von der Marke, ohne Umweg</h2>
           <p>
             Wir verkaufen ausschließlich Düfte unserer eigenen Marke Nadir. Jeder Flakon kommt direkt von uns,
             originalverpackt und in Folie versiegelt. Graumarkt und Fälschungen haben so keinen Weg in Ihre Bestellung.
@@ -203,8 +223,11 @@ export default async function Home() {
         </div>
         <div className="mt-12 grid gap-10 md:grid-cols-3">
           {articles.map((a) => (
-            <article key={a.slug} className="border-t border-line pt-6">
-              <h3 className="text-2xl leading-snug">
+            <article key={a.slug}>
+              <Link href={`/ratgeber/${a.slug}`} className="relative block aspect-[3/2] overflow-hidden bg-veil" tabIndex={-1} aria-hidden>
+                <Image src={images[a.image].src} alt="" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+              </Link>
+              <h3 className="mt-5 text-2xl leading-snug">
                 <Link href={`/ratgeber/${a.slug}`} className="hover:text-gold-deep">
                   {a.title}
                 </Link>

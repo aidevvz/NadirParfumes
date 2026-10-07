@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: { default: `${shop.name} | Eau de Parfum online kaufen`, template: `%s | ${shop.name}` },
   description:
     "Eau de Parfum und Extrait von Nadir: Damen-, Herren-, Unisex- und Nischendüfte mit klaren Duftnoten. Versand nach Österreich, Deutschland und in die Schweiz.",
-  openGraph: { type: "website", locale: "de_AT", siteName: shop.name },
+  openGraph: { type: "website", locale: "de_AT", siteName: shop.name, images: [{ url: "/images/hero-flakon-satin.jpg", width: 1440, height: 1800 }] },
   icons: { icon: "/icon.svg" },
 };
 

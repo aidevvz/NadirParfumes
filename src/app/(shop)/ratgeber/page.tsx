@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { images } from "@/lib/images";
 import { articles } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -17,10 +19,15 @@ export default function Ratgeber() {
       <p className="mt-4 max-w-xl text-mist">Was hinter den Begriffen auf dem Flakon steckt, und wie Sie einen Duft finden, der zu Ihnen passt.</p>
       <div className="mt-12 border-t border-ink">
         {articles.map((a) => (
-          <article key={a.slug} className="border-b border-line py-8">
+          <article key={a.slug} className="grid gap-6 border-b border-line py-8 sm:grid-cols-[220px_1fr] sm:items-center">
+            <Link href={`/ratgeber/${a.slug}`} className="relative block aspect-[3/2] overflow-hidden bg-veil" tabIndex={-1} aria-hidden>
+              <Image src={images[a.image].src} alt="" fill sizes="220px" className="object-cover" />
+            </Link>
+            <div>
             <p className="text-sm text-mist"><time dateTime={a.date}>{dfmt.format(new Date(a.date))}</time></p>
             <h2 className="mt-2 text-3xl"><Link href={`/ratgeber/${a.slug}`} className="hover:text-gold-deep">{a.title}</Link></h2>
             <p className="mt-3 text-mist">{a.description}</p>
+            </div>
           </article>
         ))}
       </div>

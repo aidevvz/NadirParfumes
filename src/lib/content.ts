@@ -1,4 +1,5 @@
 /** Redaktionelle Inhalte: FAQ und Ratgeber. Texte vor Livegang prüfen. */
+import type { ImageKey } from "./images";
 
 export const faqs = [
   {
@@ -36,6 +37,7 @@ export type Article = {
   title: string;
   description: string;
   date: string;
+  image: ImageKey;
   body: { h?: string; p: string }[];
 };
 
@@ -45,6 +47,7 @@ export const articles: Article[] = [
     title: "Eau de Parfum oder Eau de Toilette: Was ist der Unterschied?",
     description: "Konzentration, Haltbarkeit und Anwendung erklärt: Extrait, Eau de Parfum, Eau de Toilette und Eau de Cologne im Vergleich.",
     date: "2026-10-01",
+    image: "amber",
     body: [
       { p: "Die Bezeichnung auf dem Flakon sagt vor allem eines: wie viel Duftöl im Alkohol gelöst ist. Je höher der Anteil, desto intensiver und länger riecht der Duft. Die Grenzen sind nicht gesetzlich festgelegt, folgen aber einer gängigen Praxis." },
       { h: "Die vier Konzentrationen", p: "Extrait de Parfum enthält meist 20 bis 30 Prozent Duftöl, Eau de Parfum 15 bis 20 Prozent, Eau de Toilette 5 bis 15 Prozent und Eau de Cologne 2 bis 5 Prozent. Ein Extrait hält entsprechend oft länger als acht Stunden, ein Eau de Cologne selten länger als zwei." },
@@ -57,6 +60,7 @@ export const articles: Article[] = [
     title: "Parfum richtig auftragen: Wo, wie viel und warum nicht verreiben",
     description: "Pulspunkte, Abstand, Dosierung: So hält Ihr Parfum länger und entfaltet alle Duftnoten.",
     date: "2026-09-20",
+    image: "apply",
     body: [
       { p: "Ein guter Duft kann schnell verfliegen, wenn er falsch aufgetragen wird. Mit ein paar Handgriffen hält er deutlich länger." },
       { h: "Auf warme Hautstellen", p: "Handgelenke, Halsansatz, hinter den Ohren und die Armbeugen sind warm und gut durchblutet. Dort verdunstet der Duft gleichmäßig. Sprühen Sie aus etwa 15 Zentimetern Abstand." },
@@ -70,6 +74,7 @@ export const articles: Article[] = [
     title: "Duftfamilien erklärt: Von blumig bis holzig",
     description: "Blumig, holzig, Ambra, frisch, Gourmand und Chypre: Was die Duftfamilien bedeuten und wie Sie Ihre finden.",
     date: "2026-09-05",
+    image: "vanilla",
     body: [
       { p: "Duftfamilien helfen, Parfums grob einzuordnen. Wer weiß, welche Familie ihm gefällt, findet schneller neue Düfte, die passen." },
       { h: "Blumig", p: "Rose, Iris, Jasmin, Veilchen. Die größte Familie, von pudrig-zart bis üppig. Blumig heißt nicht automatisch feminin." },
