@@ -21,6 +21,19 @@ export function Header() {
   const overlay = path === "/"; // Auf der Startseite liegt die Navigation über dem Hero-Bild
 
   useEffect(() => setMenu(false), [path]);
+
+  // Offenes Mobile-Menü: mit Escape schließen und Seite dahinter nicht scrollen lassen
+  useEffect(() => {
+    if (!menu) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenu(false);
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [menu]);
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 40);
     on();
@@ -97,7 +110,7 @@ export function Header() {
             <ul className="px-5 py-6">
               {[...nav, { href: "/parfums", label: "Shop" }].map((n) => (
                 <li key={n.href}>
-                  <Link href={n.href} className="block py-3 font-display text-3xl">
+                  <Link href={n.href} onClick={() => setMenu(false)} className="block py-3 font-display text-3xl">
                     {n.label}
                   </Link>
                 </li>
@@ -106,6 +119,14 @@ export function Header() {
           </nav>
         )}
       </header>
+      {/* Klick außerhalb des Menüs schließt es */}
+      {menu && (
+        <div
+          className="fixed inset-0 z-30 bg-black/60 backdrop-blur-[2px] lg:hidden"
+          onClick={() => setMenu(false)}
+          aria-hidden
+        />
+      )}
       {!overlay && <div className="h-20" aria-hidden />}
     </>
   );
