@@ -1,68 +1,79 @@
 import Link from "next/link";
 import { shop, shipping } from "@/lib/config";
-import { ConsentLink } from "./CookieConsent";
 import { euro } from "@/lib/money";
+import { ConsentLink } from "./CookieConsent";
+
+// PLATZHALTER: echte Profil-Links eintragen
+const social = [
+  { href: "https://www.instagram.com/", label: "Instagram" },
+  { href: "https://www.tiktok.com/", label: "TikTok" },
+];
 
 export function Footer() {
   return (
-    <footer className="mt-32 bg-ink text-paper">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-4 md:px-10">
-        <div className="md:col-span-1">
-          <p className="font-display text-2xl tracking-[0.18em]">NADIR</p>
-          <p className="mt-4 max-w-xs text-sm text-paper/70">{shop.claim}. Versand nach Österreich, Deutschland und in die Schweiz.</p>
+    <footer className="mt-32 border-t border-gold/40 bg-paper">
+      <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-20 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-12">
+        <div>
+          <p className="text-2xl font-semibold tracking-[0.22em]">NADIR PARFUM</p>
+          <p className="label mt-4 text-gold-deep">{shop.claim}</p>
         </div>
         <FooterCol
-          title="Shop"
           links={[
-            ["/parfums", "Alle Düfte"],
-            ["/kategorie/damen", "Damen"],
-            ["/kategorie/herren", "Herren"],
-            ["/kategorie/unisex", "Unisex"],
-            ["/kategorie/nische", "Nische"],
+            ["/#collection", "Collection"],
+            ["/#house", "The House"],
+            ["/#story", "Our Story"],
+            ["/kontakt", "Contact"],
+            ["/parfums", "Shop"],
           ]}
-        />
-        <FooterCol
-          title="Service"
-          links={[
-            ["/versand-zahlung", "Versand und Zahlung"],
-            ["/widerruf", "Rücktritt und Rückgabe"],
-            ["/faq", "Häufige Fragen"],
-            ["/ratgeber", "Ratgeber"],
-            ["/kontakt", "Kontakt"],
-          ]}
+          labelClass="label text-ink"
         />
         <div>
-          <p className="text-sm text-gold">Rechtliches</p>
-          <ul className="mt-4 space-y-2 text-sm text-paper/80">
-            <li><Link className="hover:text-gold" href="/impressum">Impressum</Link></li>
-            <li><Link className="hover:text-gold" href="/agb">AGB</Link></li>
-            <li><Link className="hover:text-gold" href="/datenschutz">Datenschutz</Link></li>
-            <li><Link className="hover:text-gold" href="/widerruf">Widerrufsbelehrung</Link></li>
+          <p className="label text-gold-deep">Follow NADIR</p>
+          <ul className="mt-5 space-y-3">
+            {social.map((s) => (
+              <li key={s.label}>
+                <a className="hover:text-gold-deep" href={s.href} target="_blank" rel="noopener noreferrer">
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="label text-gold-deep">Rechtliches</p>
+          <ul className="mt-5 space-y-3 text-[0.95rem]">
+            <li><Link className="hover:text-gold-deep" href="/datenschutz">Datenschutz</Link></li>
+            <li><Link className="hover:text-gold-deep" href="/agb">AGB</Link></li>
+            <li><Link className="hover:text-gold-deep" href="/versand-zahlung">Versand und Rückgabe</Link></li>
+            <li><Link className="hover:text-gold-deep" href="/widerruf">Widerrufsbelehrung</Link></li>
+            <li><Link className="hover:text-gold-deep" href="/impressum">Impressum</Link></li>
             <li><ConsentLink /></li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-paper/15">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-paper/60 md:flex-row md:justify-between md:px-10">
-          <p>Alle Preise in Euro inkl. 20 % USt, zzgl. Versand (Österreich {euro(shipping.AT.priceCents)}, ab {euro(shipping.AT.freeFromCents!)} kostenlos).</p>
-          <p>© {new Date().getFullYear()} {shop.name}</p>
+      <div className="mx-auto max-w-[1440px] px-5 md:px-12">
+        <div className="flex flex-col gap-3 border-t border-gold/30 py-7 text-xs text-mist md:flex-row md:items-center md:justify-between">
+          <p className="label text-mist">© {new Date().getFullYear()} NADIR Parfum</p>
+          <p>
+            Alle Preise inkl. 20 % USt, zzgl. Versand (Österreich {euro(shipping.AT.priceCents)}, ab {euro(shipping.AT.freeFromCents!)} kostenlos).
+          </p>
+          <p className="label text-mist">Extrait de Parfum</p>
         </div>
       </div>
     </footer>
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: [string, string][] }) {
+function FooterCol({ links, labelClass }: { links: [string, string][]; labelClass: string }) {
   return (
-    <div>
-      <p className="text-sm text-gold">{title}</p>
-      <ul className="mt-4 space-y-2 text-sm text-paper/80">
-        {links.map(([href, label]) => (
-          <li key={href}>
-            <Link className="hover:text-gold" href={href}>{label}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="space-y-4">
+      {links.map(([href, label]) => (
+        <li key={href}>
+          <Link className={`${labelClass} hover:text-gold-deep`} href={href}>
+            {label}
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }

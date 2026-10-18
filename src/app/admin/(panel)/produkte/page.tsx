@@ -30,7 +30,7 @@ export default async function Products() {
                 <form key={v.id} action={updateStock.bind(null, v.id)} className="flex items-center gap-2 border border-line p-2">
                   <span className="w-16 shrink-0 text-sm">{v.sizeMl} ml<br /><span className="text-mist">{euro(v.priceCents)}</span></span>
                   <label className="sr-only" htmlFor={`s-${v.id}`}>Bestand {p.name} {v.sizeMl} ml</label>
-                  <input id={`s-${v.id}`} name="stock" type="number" min={0} defaultValue={v.stock} className={`field !min-h-9 w-16 !px-2 ${v.stock === 0 ? "!border-[#a12a2a]" : ""}`} />
+                  <input id={`s-${v.id}`} name="stock" type="number" min={0} defaultValue={v.stock} className={`field !min-h-9 w-16 !px-2 ${v.stock === 0 ? "!border-danger" : ""}`} />
                   <button className="text-sm underline hover:text-gold-deep">Speichern</button>
                 </form>
               ))}

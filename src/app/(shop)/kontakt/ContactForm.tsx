@@ -40,7 +40,7 @@ export function ContactForm() {
       <div aria-hidden className="absolute -left-[9999px]"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
       <p className="text-sm text-mist">Wir verwenden Ihre Angaben nur zur Beantwortung. Mehr in der <Link href="/datenschutz" className="underline">Datenschutzerklärung</Link>.</p>
       <button className="btn btn-solid" disabled={state === "sending"}>{state === "sending" ? "Wird gesendet …" : "Nachricht senden"}</button>
-      {state === "error" && <p role="alert" className="text-sm text-[#a12a2a]">{msg}</p>}
+      {state === "error" && <p role="alert" className="text-sm text-danger">{msg}</p>}
     </form>
   );
 }

@@ -17,7 +17,7 @@ export async function GET() {
   const lines = [
     `# ${shop.name}`,
     "",
-    `> ${shop.name} ist der Onlineshop der Parfummarke ${shop.brand} aus ${shop.city}. Verkauft werden ausschließlich eigene Düfte (Eau de Parfum, Eau de Toilette, Extrait) in 30, 50 und 100 ml. Versand nach Österreich, Deutschland und in die Schweiz; Preise in Euro inkl. 20 % USt.`,
+    `> ${shop.name} ist der Onlineshop der Parfummarke ${shop.brand} aus ${shop.city}. Drei Extraits de Parfum (Aurelis, Essencia, Red Velvet), je 50 ml. Versand nach Österreich, Deutschland und in die Schweiz; Preise in Euro inkl. 20 % USt.`,
     "",
     "## Düfte",
     ...products.map((p) => {

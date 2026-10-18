@@ -40,7 +40,7 @@ export default async function EditProduct({ params, searchParams }: { params: Pr
 
       <ProductForm product={p} />
 
-      <section className="border border-[#a12a2a]/30 bg-paper p-6">
+      <section className="border border-danger/30 bg-paper p-6">
         <h2 className="font-sans text-lg">Produkt löschen</h2>
         <p className="mt-1 text-sm text-mist">Besser: Häkchen bei „Im Shop sichtbar“ entfernen. Löschen entfernt das Produkt endgültig; bestehende Bestellungen bleiben erhalten.</p>
         <form action={deleteProduct.bind(null, p.id)} className="mt-4">

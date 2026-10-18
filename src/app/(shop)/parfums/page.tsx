@@ -3,6 +3,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { Filters } from "@/components/Filters";
 import { categoryFromSlug } from "@/lib/config";
 import { findProducts } from "@/lib/catalog";
+import { db } from "@/lib/db";
 
 type SP = Promise<Record<string, string | undefined>>;
 
@@ -10,8 +11,8 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
   const sp = await searchParams;
   const filtered = Object.values(sp).some(Boolean);
   return {
-    title: "Alle Düfte: Eau de Parfum und Extrait online kaufen",
-    description: "Alle Nadir-Düfte im Überblick. Nach Duftfamilie, Größe und Preis filtern. Versand nach AT, DE und CH.",
+    title: "The Collection: NADIR Extrait de Parfum kaufen",
+    description: "Aurelis, Essencia und Red Velvet: die drei NADIR Extraits de Parfum, je 50 ml. Versand nach Österreich, Deutschland und in die Schweiz.",
     alternates: { canonical: "/parfums" },
     robots: filtered ? { index: false, follow: true } : undefined,
   };
@@ -19,6 +20,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
 
 export default async function AllProducts({ searchParams }: { searchParams: SP }) {
   const sp = await searchParams;
+  const total = await db.product.count({ where: { active: true } });
   const products = await findProducts({
     q: sp.q?.trim().slice(0, 80) || undefined,
     category: sp.kategorie ? categoryFromSlug(sp.kategorie) ?? undefined : undefined,
@@ -30,18 +32,21 @@ export default async function AllProducts({ searchParams }: { searchParams: SP }
 
   return (
     <div className="mx-auto max-w-7xl px-5 pt-14 md:px-10 md:pt-20">
-      <h1 className="text-5xl md:text-6xl">Alle Düfte</h1>
-      <p className="mt-4 max-w-xl text-mist">
-        Das ganze Sortiment, filterbar nach Duftfamilie, Größe und Preis. Jeder Duft ist in 30, 50 und 100 ml erhältlich.
+      <p className="label text-gold-deep">Shop</p>
+      <h1 className="claim mt-5 text-[clamp(2.8rem,7vw,5.5rem)]">The Collection</h1>
+      <p className="mt-5 max-w-xl text-lg text-mist">
+        Drei Extraits de Parfum, je 50 ml. Frisch und leuchtend, warm und sinnlich, kraftvoll und intensiv.
       </p>
-      <div className="mt-10">
-        <Filters action="/parfums" values={sp} />
-      </div>
+      {(total > 6 || Object.values(sp).some(Boolean)) && (
+        <div className="mt-10">
+          <Filters action="/parfums" values={sp} />
+        </div>
+      )}
       <p className="mt-6 text-sm text-mist" aria-live="polite">
         {products.length === 1 ? "1 Duft" : `${products.length} Düfte`}
       </p>
       {products.length ? (
-        <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-12 lg:grid-cols-4 lg:gap-x-8">
+        <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p, i) => (
             <ProductCard key={p.id} p={p} priority={i < 4} />
           ))}

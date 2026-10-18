@@ -102,13 +102,13 @@ export function ProductForm({ product }: { product?: Product & { variants: Varia
           <span className="mb-1.5 block text-sm text-mist">Flakon-Farbe (solange kein Foto da ist)</span>
           <input type="color" name="accentColor" defaultValue={product?.accentColor ?? "#B08D57"} className="h-11 w-24 border border-line" />
         </label>
-        <label className="flex items-center gap-3"><input type="checkbox" name="active" defaultChecked={product?.active ?? true} className="h-5 w-5 accent-black" /> Im Shop sichtbar</label>
-        <label className="flex items-center gap-3"><input type="checkbox" name="featured" defaultChecked={product?.featured ?? false} className="h-5 w-5 accent-black" /> Auf der Startseite zeigen</label>
+        <label className="flex items-center gap-3"><input type="checkbox" name="active" defaultChecked={product?.active ?? true} className="h-5 w-5 accent-[#c9a45c]" /> Im Shop sichtbar</label>
+        <label className="flex items-center gap-3"><input type="checkbox" name="featured" defaultChecked={product?.featured ?? false} className="h-5 w-5 accent-[#c9a45c]" /> Auf der Startseite zeigen</label>
       </section>
 
       <div className="flex items-center gap-4">
         <button className="btn btn-solid" disabled={pending}>{pending ? "Speichern …" : "Speichern"}</button>
-        <p role="status" className={state?.error ? "text-[#a12a2a]" : "text-gold-deep"}>{state?.error ?? (state?.ok ? "Gespeichert." : "")}</p>
+        <p role="status" className={state?.error ? "text-danger" : "text-gold-deep"}>{state?.error ?? (state?.ok ? "Gespeichert." : "")}</p>
       </div>
     </form>
   );

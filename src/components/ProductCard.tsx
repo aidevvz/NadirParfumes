@@ -33,11 +33,11 @@ export function ProductCard({ p, priority = false }: { p: ProductFull; priority?
           {!available && <span className="absolute left-3 top-3 bg-paper px-2.5 py-1 text-xs">Ausverkauft</span>}
         </div>
         <div className="mt-4 flex items-baseline justify-between gap-3">
-          <h3 className="font-display text-[1.35rem] leading-tight group-hover:text-gold-deep">{p.name}</h3>
-          <p className="shrink-0 text-[0.95rem]">ab {euro(fromPrice(p))}</p>
+          <h3 className="claim text-[2rem] group-hover:text-gold-deep">{p.name}</h3>
+          <p className="shrink-0 text-[0.95rem]">{p.variants.length > 1 ? "ab " : ""}{euro(fromPrice(p))}</p>
         </div>
-        <p className="mt-1 text-sm text-mist">
-          {concentrationLabel[p.concentration]}, {p.fragranceFamily.toLowerCase()}
+        <p className="label mt-3 text-gold-deep">
+          {concentrationLabel[p.concentration]} / {p.variants.map((v) => `${v.sizeMl} ml`).join(", ")}
         </p>
       </Link>
     </article>

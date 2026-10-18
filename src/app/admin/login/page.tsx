@@ -14,7 +14,7 @@ export default function Login() {
           <span className="mb-1.5 block text-sm text-mist">Passwort</span>
           <input type="password" name="password" required autoComplete="current-password" className="field" autoFocus />
         </label>
-        {state?.error && <p role="alert" className="mt-3 text-sm text-[#a12a2a]">{state.error}</p>}
+        {state?.error && <p role="alert" className="mt-3 text-sm text-danger">{state.error}</p>}
         <button className="btn btn-solid mt-6 w-full" disabled={pending}>
           {pending ? "Anmelden …" : "Anmelden"}
         </button>

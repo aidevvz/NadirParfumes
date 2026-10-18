@@ -12,6 +12,7 @@ import { getProduct, productInclude, productPath, fromPrice } from "@/lib/catalo
 import { breadcrumbLd, productLd } from "@/lib/seo";
 import { db } from "@/lib/db";
 import { euro } from "@/lib/money";
+import { expressionBySlug, themeBg } from "@/lib/collection";
 
 export const revalidate = 300;
 
@@ -38,6 +39,7 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
   if (!p) notFound();
 
   const cat = categories[p.category];
+  const exp = expressionBySlug(p.slug);
   const related = await db.product.findMany({
     where: { active: true, id: { not: p.id }, OR: [{ fragranceFamily: p.fragranceFamily }, { category: p.category }] },
     include: productInclude,
@@ -45,10 +47,12 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
   });
 
   return (
-    <div className="mx-auto max-w-7xl px-5 pt-8 md:px-10 md:pt-12">
+    <>
+    <div className={exp ? themeBg[exp.theme] : ""}>
+    <div className="mx-auto max-w-7xl px-5 pb-20 pt-8 md:px-10 md:pb-28 md:pt-12">
       <nav aria-label="Brotkrumen" className="text-sm text-mist">
         <Link href="/" className="hover:text-gold-deep">Start</Link> /{" "}
-        <Link href={`/kategorie/${cat.slug}`} className="hover:text-gold-deep">{cat.label}</Link> / {p.name}
+        <Link href="/parfums" className="hover:text-gold-deep">Collection</Link> / {p.name}
       </nav>
 
       <div className="mt-8 grid gap-10 md:grid-cols-[1.1fr_1fr] md:gap-16">
@@ -56,7 +60,7 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
         <div className="grid gap-3">
           {p.images.length ? (
             p.images.map((img, i) => (
-              <div key={img.id} className="relative aspect-[4/5] bg-veil">
+              <div key={img.id} className={`relative bg-veil ${i === 0 ? "aspect-[4/5]" : "aspect-[3/2]"}`}>
                 <Image src={img.url} alt={img.alt} fill priority={i === 0} sizes="(min-width: 768px) 55vw, 100vw" className="object-cover" />
               </div>
             ))
@@ -70,10 +74,11 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
 
         {/* Kaufbereich */}
         <div className="md:sticky md:top-28 md:self-start">
-          <p className="text-sm text-gold-deep">
-            {p.brandName}, {concentrationLabel[p.concentration]}
+          <p className="label text-gold-deep">
+            {exp ? `Expression ${exp.no} / ` : ""}{concentrationLabel[p.concentration]}
           </p>
-          <h1 className="mt-2 text-5xl md:text-6xl">{p.name}</h1>
+          <h1 className="claim mt-5 text-[clamp(3rem,6vw,5rem)]">{p.name}</h1>
+          {exp && <p className="mt-4 font-display text-2xl">{exp.headline}</p>}
           <p className="mt-5 text-lg text-mist">{p.shortDescription}</p>
           <div className="gold-rule my-8" />
           <BuyBox
@@ -94,11 +99,14 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
         </div>
       </div>
 
+    </div>
+    </div>
+    <div className="mx-auto max-w-7xl px-5 md:px-10">
       {/* Beschreibung und Duftnoten */}
       <div className="mt-24 grid gap-14 md:grid-cols-2 md:gap-20">
         <section>
           <h2 className="text-3xl md:text-4xl">Über {p.name}</h2>
-          <p className="mt-5 leading-relaxed text-[#222]">{p.description}</p>
+          <p className="mt-5 leading-relaxed text-ink/85">{p.description}</p>
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-6 text-sm">
             <div><dt className="text-mist">Marke</dt><dd>{p.brandName}</dd></div>
             <div><dt className="text-mist">Konzentration</dt><dd>{concentrationLabel[p.concentration]}</dd></div>
@@ -118,7 +126,7 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
 
       {related.length > 0 && (
         <section className="mt-28">
-          <h2 className="text-3xl md:text-4xl">Das könnte Ihnen auch gefallen</h2>
+          <h2 className="text-3xl md:text-4xl">Weitere Expressions</h2>
           <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-12 lg:grid-cols-4 lg:gap-x-8">
             {related.map((r) => (
               <ProductCard key={r.id} p={r} />
@@ -130,5 +138,6 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
       <JsonLd data={productLd(p)} />
       <JsonLd data={breadcrumbLd([["Start", "/"], [cat.label, `/kategorie/${cat.slug}`], [p.name, productPath(p)]])} />
     </div>
+    </>
   );
 }

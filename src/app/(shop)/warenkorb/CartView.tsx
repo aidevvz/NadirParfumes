@@ -124,7 +124,7 @@ export function CartView() {
         <button className="btn btn-solid mt-7 w-full" onClick={checkout} disabled={busy}>
           {busy ? "Kasse wird geöffnet …" : "Weiter zur Kasse"}
         </button>
-        {error && <p role="alert" className="mt-3 text-sm text-[#a12a2a]">{error}</p>}
+        {error && <p role="alert" className="mt-3 text-sm text-danger">{error}</p>}
         <p className="mt-4 text-xs leading-relaxed text-mist">
           Sie zahlen auf der sicheren Seite von Stripe mit Karte, EPS, PayPal, Klarna, Apple Pay oder Google Pay.
           Gutscheincodes geben Sie dort ein. Es gelten unsere <Link href="/agb" className="underline">AGB</Link> und die{" "}

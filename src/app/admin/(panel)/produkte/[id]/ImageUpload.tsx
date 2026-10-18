@@ -16,7 +16,7 @@ export function ImageUpload({ productId }: { productId: string }) {
         <input name="alt" placeholder="z. B. Flakon Ambre de Nuit 50 ml von vorne" className="field" />
       </label>
       <button className="btn btn-solid" disabled={pending}>{pending ? "Lädt hoch …" : "Hochladen"}</button>
-      {state?.error && <p role="alert" className="text-sm text-[#a12a2a] md:col-span-3">{state.error}</p>}
+      {state?.error && <p role="alert" className="text-sm text-danger md:col-span-3">{state.error}</p>}
     </form>
   );
 }

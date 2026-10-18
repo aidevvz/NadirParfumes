@@ -8,7 +8,7 @@ export default async function Panel({ children }: { children: React.ReactNode })
   await requireAdmin();
   return (
     <div>
-      <header className="border-b border-line bg-ink text-paper">
+      <header className="border-b border-line bg-black text-ink">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-4">
           <div className="flex items-center gap-8">
             <Link href="/admin" className="font-display text-xl tracking-[0.18em]">NADIR</Link>

@@ -60,6 +60,14 @@ Stripe-Webhooks lokal testen: `stripe listen --forward-to localhost:3000/api/str
 
 `netlify.toml` ist enthalten. Unter Site configuration → Environment variables alle Werte aus `.env.example` eintragen, mindestens `DATABASE_URL` (Scope: Builds **und** Functions). Datenbank z. B. über Netlify DB oder Neon (Region Frankfurt). Bild-Upload nutzt Vercel Blob und funktioniert mit einem `BLOB_READ_WRITE_TOKEN` auch auf Netlify. Der Build selbst braucht keine Datenbank; Seiten mit Produktdaten werden zur Laufzeit gerendert.
 
+## Sortiment und Design (Stand Oktober 2026)
+
+- Design nach der Framer-Vorlage: Schwarz und Gold, große Serifen-Claims, jede Expression mit eigener Farbwelt.
+- Sortiment: **Aurelis, Essencia, Red Velvet** (Extrait de Parfum, 50 ml). Bilder unter `public/images/products/`, Logo unter `public/images/brand/`.
+- Redaktionelle Texte der Startseite (Claims, Teaser) in `src/lib/collection.ts`; Preise, Bestand und Duftnoten im Admin.
+- **PLATZHALTER:** Preis 149 €, Bestand 20, Kategorie „Unisex“ und die Duftnoten sind aus den Bildern abgeleitet. Vor Livegang mit dem Hersteller abgleichen.
+- Nach dem Update einmal das Sortiment in der Produktions-Datenbank anlegen: `DATABASE_URL` setzen und `npm run db:seed` ausführen. Das entfernt die alten Beispieldüfte und legt die drei NADIR-Düfte an.
+
 ## Offene Punkte und Hinweise
 
 - **Shopname**: steht zentral in `src/lib/config.ts` (`shop.name`, `shop.brand`). Logo-Schriftzug „NADIR“ steht außerdem in `Header.tsx`, `Footer.tsx`, `Flakon.tsx`.

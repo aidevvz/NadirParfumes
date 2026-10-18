@@ -78,7 +78,7 @@ export default async function OrderDetail({ params }: { params: Promise<{ id: st
           <h2 className="font-sans text-lg">{o.status === "PAID" ? "Stornieren und erstatten" : "Erstatten (nach Rücksendung)"}</h2>
           <p className="mt-1 text-sm text-mist">Erstattet den vollen Betrag über Stripe auf die ursprüngliche Zahlungsart und informiert den Kunden per E-Mail. Teilerstattungen direkt im Stripe-Dashboard.</p>
           <form action={cancelAndRefund.bind(null, o.id)} className="mt-4 flex flex-wrap items-center gap-5">
-            <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="restock" defaultChecked={o.status === "PAID"} className="h-4 w-4 accent-black" /> Ware zurück in den Bestand buchen</label>
+            <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="restock" defaultChecked={o.status === "PAID"} className="h-4 w-4 accent-[#c9a45c]" /> Ware zurück in den Bestand buchen</label>
             <ConfirmButton message={`Bestellung ${o.number} wirklich erstatten (${euro(o.totalCents)})?`}>Erstatten</ConfirmButton>
           </form>
         </Card>

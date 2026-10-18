@@ -42,7 +42,7 @@ export default async function Dashboard() {
               {lowStock.map((v) => (
                 <li key={v.id} className="flex justify-between py-2">
                   <Link href={`/admin/produkte/${v.productId}`} className="hover:underline">{v.product.name} {v.sizeMl} ml</Link>
-                  <span className={v.stock === 0 ? "text-[#a12a2a]" : "text-gold-deep"}>{v.stock === 0 ? "ausverkauft" : `${v.stock} Stück`}</span>
+                  <span className={v.stock === 0 ? "text-danger" : "text-gold-deep"}>{v.stock === 0 ? "ausverkauft" : `${v.stock} Stück`}</span>
                 </li>
               ))}
             </ul>
