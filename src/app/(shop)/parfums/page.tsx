@@ -4,6 +4,7 @@ import { Filters } from "@/components/Filters";
 import { categoryFromSlug } from "@/lib/config";
 import { findProducts } from "@/lib/catalog";
 import { db } from "@/lib/db";
+import { expressions } from "@/lib/collection";
 
 type SP = Promise<Record<string, string | undefined>>;
 
@@ -29,6 +30,15 @@ export default async function AllProducts({ searchParams }: { searchParams: SP }
     maxPrice: sp.preis ? Number(sp.preis) || undefined : undefined,
     sort: (sp.sort as "neu" | "preis-auf" | "preis-ab") || "neu",
   });
+  // Ohne gewählte Sortierung: Reihenfolge der Expressions (Aurelis, Essencia, Red Velvet)
+  if (!sp.sort) {
+    const rank = (slug: string) => {
+      const i = expressions.findIndex((e) => e.slug === slug);
+      return i === -1 ? 99 : i;
+    };
+    products.sort((a, b) => rank(a.slug) - rank(b.slug));
+  }
+  const showFilters = total > 6 || Object.values(sp).some(Boolean);
 
   return (
     <div className="mx-auto max-w-7xl px-5 pt-14 md:px-10 md:pt-20">
@@ -37,12 +47,12 @@ export default async function AllProducts({ searchParams }: { searchParams: SP }
       <p className="mt-5 max-w-xl text-lg text-mist">
         Drei Extraits de Parfum, je 50 ml. Frisch und leuchtend, warm und sinnlich, kraftvoll und intensiv.
       </p>
-      {(total > 6 || Object.values(sp).some(Boolean)) && (
+      {showFilters && (
         <div className="mt-10">
           <Filters action="/parfums" values={sp} />
         </div>
       )}
-      <p className="mt-6 text-sm text-mist" aria-live="polite">
+      <p className={showFilters ? "mt-6 text-sm text-mist" : "sr-only"} aria-live="polite">
         {products.length === 1 ? "1 Duft" : `${products.length} Düfte`}
       </p>
       {products.length ? (

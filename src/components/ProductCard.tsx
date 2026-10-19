@@ -39,6 +39,7 @@ export function ProductCard({ p, priority = false }: { p: ProductFull; priority?
         <p className="label mt-3 text-gold-deep">
           {concentrationLabel[p.concentration]} / {p.variants.map((v) => `${v.sizeMl} ml`).join(", ")}
         </p>
+        <p className="mt-3 max-w-sm text-[0.95rem] text-ink/75">{p.shortDescription}</p>
       </Link>
     </article>
   );
