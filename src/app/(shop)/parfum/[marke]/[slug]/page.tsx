@@ -52,7 +52,7 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
     <div className="mx-auto max-w-7xl px-5 pb-20 pt-8 md:px-10 md:pb-28 md:pt-12">
       <nav aria-label="Brotkrumen" className="text-sm text-mist">
         <Link href="/" className="hover:text-gold-deep">Start</Link> /{" "}
-        <Link href="/parfums" className="hover:text-gold-deep">Collection</Link> / {p.name}
+        <Link href="/parfums" className="hover:text-gold-deep">Kollektion</Link> / {p.name}
       </nav>
 
       <div className="mt-8 grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-16">
@@ -75,7 +75,7 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
         {/* Kaufbereich */}
         <div className="md:sticky md:top-28 md:self-start">
           <p className="label text-gold-deep">
-            {exp ? `Expression ${exp.no} / ` : ""}{concentrationLabel[p.concentration]}
+            {exp ? `Duft ${exp.no} / ` : ""}{concentrationLabel[p.concentration]}
           </p>
           <h1 className="claim mt-5 text-[clamp(3rem,6vw,5rem)]">{p.name}</h1>
           {exp && <p className="mt-4 font-display text-2xl">{exp.headline}</p>}
@@ -127,7 +127,7 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
 
       {related.length > 0 && (
         <section className="mt-28">
-          <h2 className="text-3xl md:text-4xl">Weitere Expressions</h2>
+          <h2 className="text-3xl md:text-4xl">Weitere Düfte</h2>
           <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-12 lg:grid-cols-4 lg:gap-x-8">
             {related.map((r) => (
               <ProductCard key={r.id} p={r} />

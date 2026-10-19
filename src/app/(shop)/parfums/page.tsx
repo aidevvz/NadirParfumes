@@ -12,7 +12,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
   const sp = await searchParams;
   const filtered = Object.values(sp).some(Boolean);
   return {
-    title: "The Collection: NADIR Extrait de Parfum kaufen",
+    title: "Die Kollektion: NADIR Extrait de Parfum kaufen",
     description: "Aurelis, Essencia und Red Velvet: die drei NADIR Extraits de Parfum, je 50 ml. Versand nach Österreich, Deutschland und in die Schweiz.",
     alternates: { canonical: "/parfums" },
     robots: filtered ? { index: false, follow: true } : undefined,
@@ -30,7 +30,7 @@ export default async function AllProducts({ searchParams }: { searchParams: SP }
     maxPrice: sp.preis ? Number(sp.preis) || undefined : undefined,
     sort: (sp.sort as "neu" | "preis-auf" | "preis-ab") || "neu",
   });
-  // Ohne gewählte Sortierung: Reihenfolge der Expressions (Aurelis, Essencia, Red Velvet)
+  // Ohne gewählte Sortierung: Reihenfolge der Kollektion (Aurelis, Essencia, Red Velvet)
   if (!sp.sort) {
     const rank = (slug: string) => {
       const i = expressions.findIndex((e) => e.slug === slug);
@@ -43,7 +43,7 @@ export default async function AllProducts({ searchParams }: { searchParams: SP }
   return (
     <div className="mx-auto max-w-7xl px-5 pt-14 md:px-10 md:pt-20">
       <p className="label text-gold-deep">Shop</p>
-      <h1 className="claim mt-5 text-[clamp(2.8rem,7vw,5.5rem)]">The Collection</h1>
+      <h1 className="claim mt-5 text-[clamp(2.8rem,7vw,5.5rem)]">Die Kollektion</h1>
       <p className="mt-5 max-w-xl text-lg text-mist">
         Drei Extraits de Parfum, je 50 ml. Frisch und geheimnisvoll, warm und süß, würzig und luxuriös.
       </p>

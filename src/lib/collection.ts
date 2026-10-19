@@ -1,7 +1,7 @@
 /**
  * Redaktionelle Inhalte der drei NADIR-Expressions (Startseite, Produktseiten).
  * Preise, Bestand und Duftnoten kommen aus der Datenbank (Admin).
- * Claims bewusst auf Englisch wie in der Markenvorlage, Fließtext auf Deutsch.
+ * Alle Texte auf Deutsch.
  */
 export type Expression = {
   slug: string;
@@ -23,8 +23,8 @@ export const expressions: Expression[] = [
     slug: "aurelis",
     no: "01",
     name: "Aurelis",
-    headline: "Luminous by nature.",
-    keywords: "Fresh · Elegant · Mysterious",
+    headline: "Von Natur aus geheimnisvoll.",
+    keywords: "Frisch · Elegant · Geheimnisvoll",
     teaser: "Ein eleganter, holzig-fruchtiger Duft mit frischen Akzenten und einer warmen, sinnlichen Tiefe. Ausdrucksstark, raffiniert und unvergesslich.",
     text: "Ein eleganter, holzig-fruchtiger Duft mit frischen Akzenten und einer warmen, sinnlichen Tiefe. Ausdrucksstark, raffiniert und unvergesslich.",
     notes: ["Oud", "Zypresse", "Veilchen", "Himbeere", "Maiglöckchen", "Leder", "Amber", "Moschus", "Vanille"],
@@ -37,8 +37,8 @@ export const expressions: Expression[] = [
     slug: "essencia",
     no: "02",
     name: "Essencia",
-    headline: "The warmth of presence.",
-    keywords: "Warm · Sweet · Sensual",
+    headline: "Die Wärme der Präsenz.",
+    keywords: "Warm · Süß · Sinnlich",
     teaser: "Eine verführerische Komposition aus cremiger Vanille, warmen Gewürzen und süßen Nuancen. Sinnlich, luxuriös und perfekt für besondere Momente.",
     text: "Eine verführerische Komposition aus cremiger Vanille, warmen Gewürzen und süßen Nuancen. Sinnlich, luxuriös und perfekt für besondere Momente.",
     notes: ["Bergamotte", "Mandarine", "Elemi", "Orangenblüte", "Zimt", "Kardamom", "Bourbon-Vanille", "Guajakholz", "Praline"],
@@ -51,8 +51,8 @@ export const expressions: Expression[] = [
     slug: "red-velvet",
     no: "03",
     name: "Red Velvet",
-    headline: "Impossible to forget.",
-    keywords: "Bold · Spicy · Luxurious",
+    headline: "Unmöglich zu vergessen.",
+    keywords: "Kraftvoll · Würzig · Luxuriös",
     teaser: "Ein kraftvoller, würzig-holziger Duft mit edlen Amber- und Oud-Akzenten. Geheimnisvoll, intensiv und geschaffen, um einen bleibenden Eindruck zu hinterlassen.",
     text: "Ein kraftvoller, würzig-holziger Duft mit edlen Amber- und Oud-Akzenten. Geheimnisvoll, intensiv und geschaffen, um einen bleibenden Eindruck zu hinterlassen.",
     notes: ["Apfel", "Zimt", "Lavendel", "Rosenholz", "Zedernholz", "Maiglöckchen", "Bulgarische Rose", "Amber", "Oud", "Moschus", "Sandelholz", "Vanille"],

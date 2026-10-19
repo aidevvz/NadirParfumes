@@ -19,16 +19,16 @@ export function Footer() {
         </div>
         <FooterCol
           links={[
-            ["/#collection", "Collection"],
-            ["/#house", "The House"],
-            ["/#story", "Our Story"],
-            ["/kontakt", "Contact"],
+            ["/#collection", "Kollektion"],
+            ["/#house", "Das Haus"],
+            ["/#story", "Unsere Geschichte"],
+            ["/kontakt", "Kontakt"],
             ["/parfums", "Shop"],
           ]}
           labelClass="label text-ink"
         />
         <div>
-          <p className="label text-gold-deep">Follow NADIR</p>
+          <p className="label text-gold-deep">NADIR folgen</p>
           <ul className="mt-5 space-y-3">
             {social.map((s) => (
               <li key={s.label}>

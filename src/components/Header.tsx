@@ -7,10 +7,10 @@ import { useCart } from "./Cart";
 import { shop } from "@/lib/config";
 
 const nav = [
-  { href: "/#collection", label: "Collection" },
-  { href: "/#house", label: "The House" },
-  { href: "/#story", label: "Our Story" },
-  { href: "/kontakt", label: "Contact" },
+  { href: "/#collection", label: "Kollektion" },
+  { href: "/#house", label: "Das Haus" },
+  { href: "/#story", label: "Unsere Geschichte" },
+  { href: "/kontakt", label: "Kontakt" },
 ];
 
 export function Header() {

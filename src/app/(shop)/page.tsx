@@ -52,24 +52,24 @@ export default async function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-30% to-paper" aria-hidden />
         </div>
         <div className="relative -mt-20 px-5 pb-10 text-center md:-mt-28 md:px-12">
-          <h1 className="claim hero-rise text-[clamp(2.6rem,7.6vw,7.25rem)] md:whitespace-nowrap">Exclusivity, bottled.</h1>
-          <p className="hero-rise-2 mt-6 text-lg text-ink/90 md:text-xl">Three expressions. One signature.</p>
+          <h1 className="claim hero-rise text-[clamp(2.6rem,7.6vw,7.25rem)] md:whitespace-nowrap">Exklusivität im Flakon.</h1>
+          <p className="hero-rise-2 mt-6 text-lg text-ink/90 md:text-xl">Drei Düfte. Eine Signatur.</p>
           <div className="hero-rise-3 mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link href="#collection" className="btn btn-solid">
-              Discover the collection <Arrow />
+              Kollektion entdecken <Arrow />
             </Link>
             <Link href="#house" className="btn btn-ghost">
-              Explore NADIR
+              NADIR erleben
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 01 Collection */}
+      {/* 01 Kollektion */}
       <section id="collection" className="mx-auto max-w-[1440px] scroll-mt-20 px-5 pt-24 md:px-12 md:pt-36">
         <div className="text-center">
-          <p className="label text-gold-deep">01 / Three expressions</p>
-          <h2 className="claim mt-6 text-[clamp(2.6rem,6.5vw,5.5rem)]">The Collection</h2>
+          <p className="label text-gold-deep">01 / Drei Düfte</p>
+          <h2 className="claim mt-6 text-[clamp(2.6rem,6.5vw,5.5rem)]">Die Kollektion</h2>
           <p className="mx-auto mt-6 max-w-xl text-lg text-mist">
             Drei Düfte. Drei Persönlichkeiten. Eine unverwechselbare Signatur.
           </p>
@@ -94,12 +94,12 @@ export default async function Home() {
                   <Link href={p.href} className="hover:text-gold-deep">{e.name}</Link>
                 </h3>
                 <p className="label mt-4 text-gold-deep">Extrait de Parfum</p>
-                <p className="label mt-3">50 ml / 1.7 fl.oz{p.price && <span className="ml-3 text-mist">{p.price}</span>}</p>
+                <p className="label mt-3">50 ml{p.price && <span className="ml-3 text-mist">{p.price}</span>}</p>
                 <p className="label mt-5 text-ink/80">{e.keywords}</p>
                 <p className="mt-4 max-w-sm text-[1.05rem] text-ink/85">{e.teaser}</p>
                 <div className="mt-8">
                   <Link href={p.href} className="btn btn-solid">
-                    {p.soldOut ? "Ausverkauft" : "Discover"} <Arrow />
+                    {p.soldOut ? "Ausverkauft" : "Entdecken"} <Arrow />
                   </Link>
                 </div>
               </article>
@@ -114,11 +114,11 @@ export default async function Home() {
         </ul>
       </section>
 
-      {/* 02 The House */}
+      {/* 02 Das Haus */}
       <section id="house" className="mx-auto max-w-4xl scroll-mt-20 px-5 pt-32 text-center md:pt-48">
         <Image src="/images/brand/nadir-logo-gold.png" alt="NADIR Parfum Logo" width={651} height={566} className="mx-auto h-auto w-36 md:w-44" />
-        <p className="label mt-14 text-gold-deep">02 / The House of NADIR</p>
-        <h2 className="claim mt-6 text-[clamp(2.4rem,6vw,5rem)]">The Art of Presence</h2>
+        <p className="label mt-14 text-gold-deep">02 / Das Haus NADIR</p>
+        <h2 className="claim mt-6 text-[clamp(2.4rem,6vw,5rem)]">Die Kunst der Präsenz</h2>
         <p className="mx-auto mt-10 max-w-3xl font-display text-[clamp(1.5rem,3vw,2.4rem)] font-medium leading-snug">
           NADIR wurde für Menschen geschaffen, die nicht auffallen müssen, um in Erinnerung zu bleiben.
         </p>
@@ -130,11 +130,11 @@ export default async function Home() {
         </p>
       </section>
 
-      {/* 03 Our Story */}
+      {/* 03 Unsere Geschichte */}
       <section id="story" className="mt-32 scroll-mt-20 bg-gradient-to-b from-paper via-[#0d1020] to-aurelis md:mt-48">
         <div className="mx-auto max-w-4xl px-5 py-28 text-center md:py-40">
-          <p className="label text-gold-deep">03 / Our Story</p>
-          <h2 className="mt-6 text-[clamp(2.4rem,6vw,5rem)]">Three expressions. One signature.</h2>
+          <p className="label text-gold-deep">03 / Unsere Geschichte</p>
+          <h2 className="mt-6 text-[clamp(2.4rem,6vw,5rem)]">Drei Düfte. Eine Signatur.</h2>
           <p className="mx-auto mt-8 max-w-2xl text-lg text-ink/85">
             NADIR beginnt mit einer einfachen Idee: Präsenz ist persönlich. Frisch und geheimnisvoll. Warm und süß.
             Würzig und luxuriös. Drei eigenständige Persönlichkeiten, vereint durch eine unverwechselbare Signatur.
@@ -142,7 +142,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Die drei Expressions mit eigener Farbwelt */}
+      {/* Die drei Düfte mit eigener Farbwelt */}
       {expressions.map((e) => {
         const p = info(e.slug);
         return (
@@ -153,7 +153,7 @@ export default async function Home() {
               </div>
               <div className={`px-5 py-20 md:px-16 md:py-24 lg:px-24 ${e.imageSide === "left" ? "md:order-2" : "md:order-1"}`}>
                 <p className="label text-gold-deep">
-                  Expression {e.no} / {e.name}
+                  Duft {e.no} / {e.name}
                 </p>
                 <h2 id={`exp-${e.slug}`} className="mt-6 text-[clamp(2.6rem,5.5vw,4.75rem)]">
                   {e.headline}
@@ -169,7 +169,7 @@ export default async function Home() {
                 </p>
                 <div className="mt-10">
                   <Link href={p.href} className="btn btn-solid">
-                    Discover {e.name} <Arrow />
+                    {e.name} entdecken <Arrow />
                   </Link>
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default async function Home() {
         );
       })}
 
-      {/* 04 The Ritual */}
+      {/* 04 Das Ritual */}
       <section className="relative isolate flex min-h-[620px] items-center overflow-hidden md:h-[92vh]">
         <Image
           src="/images/products/ritual-box.jpg"
@@ -189,39 +189,39 @@ export default async function Home() {
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/85 via-black/45 to-transparent" aria-hidden />
         <div className="mx-auto w-full max-w-[1440px] px-5 md:px-12">
-          <p className="label text-gold-deep">04 / The Experience</p>
-          <h2 className="claim mt-6 text-[clamp(3rem,7vw,6rem)]">The Ritual</h2>
+          <p className="label text-gold-deep">04 / Das Erlebnis</p>
+          <h2 className="claim mt-6 text-[clamp(3rem,7vw,6rem)]">Das Ritual</h2>
           <p className="mt-6 max-w-sm text-lg text-ink/90">Bevor sich der Duft offenbart, beginnt das Erlebnis.</p>
         </div>
       </section>
 
-      {/* Signature */}
+      {/* Signatur */}
       <section className="mx-auto max-w-5xl px-5 pt-32 text-center md:pt-44">
-        <p className="label text-gold-deep">The NADIR Signature</p>
+        <p className="label text-gold-deep">Die NADIR Signatur</p>
         <p className="claim mt-8 text-[clamp(2.8rem,7.5vw,6.5rem)]">Extrait de Parfum</p>
-        <p className="mt-8 font-display text-[clamp(1.8rem,4vw,3rem)] font-medium text-gold-deep">50 ml / 1.7 fl.oz</p>
+        <p className="mt-8 font-display text-[clamp(1.8rem,4vw,3rem)] font-medium text-gold-deep">50 ml</p>
         <p className="mx-auto mt-8 max-w-lg text-mist">
           Die höchste Konzentration der Parfumerie. Wenige Sprühstöße genügen für einen ganzen Tag.
         </p>
       </section>
 
-      {/* Leave an impression */}
+      {/* Abschluss-Claim */}
       <section className="mx-auto max-w-6xl px-5 pt-32 text-center md:pt-44">
         <p className="label text-gold-deep">NADIR Parfum</p>
-        <h2 className="claim mt-8 text-[clamp(2.8rem,8vw,7.5rem)]">Leave an impression.</h2>
+        <h2 className="claim mt-8 text-[clamp(2.8rem,8vw,7.5rem)]">Hinterlassen Sie einen Eindruck.</h2>
         <p className="mt-6 text-lg">Entdecken Sie NADIR Parfum.</p>
         <div className="mt-10">
           <Link href="/parfums" className="btn btn-solid">
-            Shop the collection <Arrow />
+            Zur Kollektion <Arrow />
           </Link>
         </div>
       </section>
 
-      {/* Contact */}
+      {/* Kontakt */}
       <section className="mx-auto max-w-[1440px] px-5 pt-32 md:px-12 md:pt-44">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <p className="label text-gold-deep">Contact / The House of NADIR</p>
+            <p className="label text-gold-deep">Kontakt / Das Haus NADIR</p>
             <p className="mt-5 max-w-md text-lg">Für persönliche Anfragen, Kooperationen und Presse.</p>
             <a href={`mailto:${shop.email}`} className="mt-3 inline-block text-gold-deep underline">
               {shop.email}
@@ -237,7 +237,7 @@ export default async function Home() {
         data={{
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: "NADIR Collection",
+          name: "NADIR Kollektion",
           itemListElement: expressions.map((e, i) => ({
             "@type": "ListItem",
             position: i + 1,

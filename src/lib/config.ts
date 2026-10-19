@@ -5,7 +5,7 @@
 export const shop = {
   name: "NADIR Parfum",
   brand: "NADIR",
-  claim: "Exclusivity, bottled.",
+  claim: "Exklusivität im Flakon.",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
   email: "office@nadir-parfums.at", // PLATZHALTER
   phone: "+43 1 000 00 00", // PLATZHALTER
