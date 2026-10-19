@@ -11,6 +11,7 @@ export type Expression = {
   keywords: string;
   teaser: string;
   text: string;
+  notes: string[];
   theme: "aurelis" | "essencia" | "velvet";
   scene: string;
   portrait: string;
@@ -23,9 +24,10 @@ export const expressions: Expression[] = [
     no: "01",
     name: "Aurelis",
     headline: "Luminous by nature.",
-    keywords: "Fresh. Elegant. Luminous.",
-    teaser: "Frisch, raffiniert und leuchtend. Stille Selbstsicherheit, ausgedrückt in Blau.",
-    text: "Ein kühler Ausdruck stiller Selbstsicherheit. Raffinierte Frische mit einer Präsenz, die mühelos wirkt.",
+    keywords: "Fresh · Elegant · Mysterious",
+    teaser: "Ein eleganter, holzig-fruchtiger Duft mit frischen Akzenten und einer warmen, sinnlichen Tiefe. Ausdrucksstark, raffiniert und unvergesslich.",
+    text: "Ein eleganter, holzig-fruchtiger Duft mit frischen Akzenten und einer warmen, sinnlichen Tiefe. Ausdrucksstark, raffiniert und unvergesslich.",
+    notes: ["Oud", "Zypresse", "Veilchen", "Himbeere", "Maiglöckchen", "Leder", "Amber", "Moschus", "Vanille"],
     theme: "aurelis",
     scene: "/images/products/aurelis-szene.jpg",
     portrait: "/images/products/aurelis.jpg",
@@ -36,9 +38,10 @@ export const expressions: Expression[] = [
     no: "02",
     name: "Essencia",
     headline: "The warmth of presence.",
-    keywords: "Sensual. Sophisticated. Rich.",
-    teaser: "Warm, sinnlich und kultiviert. Ein Bernstein-Ausdruck von Präsenz.",
-    text: "Ein intimer Bernstein-Ausdruck. Wärme mit Tiefe, komponiert für Momente, die nachklingen sollen.",
+    keywords: "Warm · Sweet · Sensual",
+    teaser: "Eine verführerische Komposition aus cremiger Vanille, warmen Gewürzen und süßen Nuancen. Sinnlich, luxuriös und perfekt für besondere Momente.",
+    text: "Eine verführerische Komposition aus cremiger Vanille, warmen Gewürzen und süßen Nuancen. Sinnlich, luxuriös und perfekt für besondere Momente.",
+    notes: ["Bergamotte", "Mandarine", "Elemi", "Orangenblüte", "Zimt", "Kardamom", "Bourbon-Vanille", "Guajakholz", "Praline"],
     theme: "essencia",
     scene: "/images/products/essencia-szene.jpg",
     portrait: "/images/products/essencia.jpg",
@@ -49,9 +52,10 @@ export const expressions: Expression[] = [
     no: "03",
     name: "Red Velvet",
     headline: "Impossible to forget.",
-    keywords: "Bold. Seductive. Powerful.",
-    teaser: "Kraftvoll, verführerisch und intensiv. Eine Signatur, die bei Ihnen bleibt.",
-    text: "Ein tiefroter Ausdruck von Intensität. Kompromisslose Präsenz für einen Eindruck, der bleibt.",
+    keywords: "Bold · Spicy · Luxurious",
+    teaser: "Ein kraftvoller, würzig-holziger Duft mit edlen Amber- und Oud-Akzenten. Geheimnisvoll, intensiv und geschaffen, um einen bleibenden Eindruck zu hinterlassen.",
+    text: "Ein kraftvoller, würzig-holziger Duft mit edlen Amber- und Oud-Akzenten. Geheimnisvoll, intensiv und geschaffen, um einen bleibenden Eindruck zu hinterlassen.",
+    notes: ["Apfel", "Zimt", "Lavendel", "Rosenholz", "Zedernholz", "Maiglöckchen", "Bulgarische Rose", "Amber", "Oud", "Moschus", "Sandelholz", "Vanille"],
     theme: "velvet",
     scene: "/images/products/red-velvet-szene.jpg",
     portrait: "/images/products/red-velvet.jpg",

@@ -55,9 +55,9 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
         <Link href="/parfums" className="hover:text-gold-deep">Collection</Link> / {p.name}
       </nav>
 
-      <div className="mt-8 grid gap-10 md:grid-cols-[1.1fr_1fr] md:gap-16">
+      <div className="mt-8 grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-16">
         {/* Bilder */}
-        <div className="grid gap-3">
+        <div className="grid min-w-0 gap-3">
           {p.images.length ? (
             p.images.map((img, i) => (
               <div key={img.id} className={`relative bg-veil ${i === 0 ? "aspect-[4/5]" : "aspect-[3/2]"}`}>
@@ -79,6 +79,7 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
           </p>
           <h1 className="claim mt-5 text-[clamp(3rem,6vw,5rem)]">{p.name}</h1>
           {exp && <p className="mt-4 font-display text-2xl">{exp.headline}</p>}
+          {exp && <p className="label mt-5 text-ink/80">{exp.keywords}</p>}
           <p className="mt-5 text-lg text-mist">{p.shortDescription}</p>
           <div className="gold-rule my-8" />
           <BuyBox
@@ -106,7 +107,7 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
       <div className="mt-24 grid gap-14 md:grid-cols-2 md:gap-20">
         <section>
           <h2 className="text-3xl md:text-4xl">Über {p.name}</h2>
-          <p className="mt-5 leading-relaxed text-ink/85">{p.description}</p>
+          {!p.description.startsWith(p.shortDescription) && <p className="mt-5 leading-relaxed text-ink/85">{p.description}</p>}
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-6 text-sm">
             <div><dt className="text-mist">Marke</dt><dd>{p.brandName}</dd></div>
             <div><dt className="text-mist">Konzentration</dt><dd>{concentrationLabel[p.concentration]}</dd></div>

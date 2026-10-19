@@ -2,11 +2,12 @@
  * Läuft automatisch bei jedem Build (siehe package.json "build").
  * - Entfernt die alten Beispieldüfte der ersten Version.
  * - Legt Aurelis, Essencia und Red Velvet an, falls sie noch fehlen.
- * Bestehende Produkte werden NICHT überschrieben, damit Änderungen aus dem Admin
+ * - Ersetzt die Platzhaltertexte der ersten Version, sofern im Admin unverändert.
+ * Sonst werden bestehende Produkte NICHT überschrieben, damit Änderungen aus dem Admin
  * (Preise, Bestand, Texte) erhalten bleiben. Ohne DATABASE_URL wird nichts getan.
  */
 import { PrismaClient } from "@prisma/client";
-import { oldSamples, products, productData } from "./catalog-data";
+import { legacyDescriptions, oldSamples, products, productData } from "./catalog-data";
 
 async function main() {
   if (!process.env.DATABASE_URL) {
@@ -20,7 +21,26 @@ async function main() {
 
     for (const p of products) {
       const exists = await db.product.findUnique({ where: { slug: p.slug } });
-      if (exists) continue;
+      if (exists) {
+        // Platzhaltertexte der ersten Version durch die echten Texte ersetzen,
+        // aber nur wenn sie im Admin noch nicht geändert wurden.
+        if (exists.description === legacyDescriptions[p.slug]) {
+          const d = productData(p);
+          await db.product.update({
+            where: { id: exists.id },
+            data: {
+              fragranceFamily: d.fragranceFamily,
+              shortDescription: d.shortDescription,
+              description: d.description,
+              topNotes: d.topNotes,
+              heartNotes: d.heartNotes,
+              baseNotes: d.baseNotes,
+            },
+          });
+          console.log(`[sync-catalog] ${p.name}: Texte und Duftnoten aktualisiert.`);
+        }
+        continue;
+      }
       await db.product.create({
         data: {
           slug: p.slug,

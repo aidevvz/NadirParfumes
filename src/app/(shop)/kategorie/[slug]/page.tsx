@@ -77,7 +77,7 @@ export default async function CategoryPage({ params, searchParams }: { params: P
       <nav aria-label="Brotkrumen" className="text-sm text-mist">
         <Link href="/" className="hover:text-gold-deep">Start</Link> / <Link href="/parfums" className="hover:text-gold-deep">Düfte</Link> / {cat.label}
       </nav>
-      <div className="mt-6 grid items-end gap-8 md:grid-cols-[1fr_1.2fr] md:gap-16">
+      <div className="mt-6 grid items-end gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-16">
         <div>
           <h1 className="text-5xl md:text-7xl">{cat.label}</h1>
           <p className="mt-4 max-w-md text-lg text-mist">{cat.intro}</p>

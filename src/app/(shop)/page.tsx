@@ -95,7 +95,8 @@ export default async function Home() {
                 </h3>
                 <p className="label mt-4 text-gold-deep">Extrait de Parfum</p>
                 <p className="label mt-3">50 ml / 1.7 fl.oz{p.price && <span className="ml-3 text-mist">{p.price}</span>}</p>
-                <p className="mt-5 max-w-sm text-[1.05rem] text-ink/85">{e.teaser}</p>
+                <p className="label mt-5 text-ink/80">{e.keywords}</p>
+                <p className="mt-4 max-w-sm text-[1.05rem] text-ink/85">{e.teaser}</p>
                 <div className="mt-8">
                   <Link href={p.href} className="btn btn-solid">
                     {p.soldOut ? "Ausverkauft" : "Discover"} <Arrow />
@@ -135,8 +136,8 @@ export default async function Home() {
           <p className="label text-gold-deep">03 / Our Story</p>
           <h2 className="mt-6 text-[clamp(2.4rem,6vw,5rem)]">Three expressions. One signature.</h2>
           <p className="mx-auto mt-8 max-w-2xl text-lg text-ink/85">
-            NADIR beginnt mit einer einfachen Idee: Präsenz ist persönlich. Frisch und leuchtend. Warm und sinnlich.
-            Kraftvoll und intensiv. Drei eigenständige Persönlichkeiten, vereint durch eine unverwechselbare Signatur.
+            NADIR beginnt mit einer einfachen Idee: Präsenz ist persönlich. Frisch und geheimnisvoll. Warm und süß.
+            Würzig und luxuriös. Drei eigenständige Persönlichkeiten, vereint durch eine unverwechselbare Signatur.
           </p>
         </div>
       </section>
@@ -157,8 +158,12 @@ export default async function Home() {
                 <h2 id={`exp-${e.slug}`} className="mt-6 text-[clamp(2.6rem,5.5vw,4.75rem)]">
                   {e.headline}
                 </h2>
-                <p className="mt-6 text-lg">{e.keywords}</p>
-                <p className="mt-6 max-w-lg text-ink/80">{e.text}</p>
+                <p className="label mt-6 text-ink">{e.keywords}</p>
+                <p className="mt-6 max-w-lg text-lg text-ink/85">{e.text}</p>
+                <div className="mt-8 max-w-lg border-t border-gold/40 pt-6">
+                  <p className="label text-gold-deep">Duftnoten</p>
+                  <p className="mt-3 font-display text-xl leading-relaxed">{e.notes.join(", ")}</p>
+                </div>
                 <p className="label mt-8">
                   Extrait de Parfum / 50 ml{p.price && <span className="ml-3 text-gold-deep">{p.price}</span>}
                 </p>

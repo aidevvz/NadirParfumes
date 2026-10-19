@@ -45,7 +45,7 @@ export default async function AllProducts({ searchParams }: { searchParams: SP }
       <p className="label text-gold-deep">Shop</p>
       <h1 className="claim mt-5 text-[clamp(2.8rem,7vw,5.5rem)]">The Collection</h1>
       <p className="mt-5 max-w-xl text-lg text-mist">
-        Drei Extraits de Parfum, je 50 ml. Frisch und leuchtend, warm und sinnlich, kraftvoll und intensiv.
+        Drei Extraits de Parfum, je 50 ml. Frisch und geheimnisvoll, warm und süß, würzig und luxuriös.
       </p>
       {showFilters && (
         <div className="mt-10">
