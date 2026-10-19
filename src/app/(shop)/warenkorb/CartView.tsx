@@ -9,15 +9,24 @@ import { shipping, shippingFor, type ShippingCountry } from "@/lib/config";
 import { euro, includedVat } from "@/lib/money";
 
 export function CartView() {
-  const { lines, setQty, remove, subtotalCents, ready } = useCart();
+  const { lines, setQty, remove, subtotalCents, ready, removed } = useCart();
   const [country, setCountry] = useState<ShippingCountry>("AT");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   if (!ready) return <p className="mt-10 text-mist">Warenkorb wird geladen …</p>;
 
+  const removedNote =
+    removed > 0 ? (
+      <p role="status" className="mt-6 border-l-2 border-gold bg-gold-pale px-4 py-3 text-sm text-gold-deep">
+        {removed === 1 ? "Ein Artikel ist" : `${removed} Artikel sind`} nicht mehr im Sortiment und wurde{removed === 1 ? "" : "n"} aus dem Warenkorb entfernt.
+      </p>
+    ) : null;
+
   if (!lines.length)
     return (
+      <>
+      {removedNote}
       <div className="mt-10 bg-veil px-6 py-20 text-center">
         <p className="font-display text-3xl">Ihr Warenkorb ist leer.</p>
         <p className="mt-3 text-mist">Wählen Sie einen Duft und eine Größe, dann erscheint er hier.</p>
@@ -25,6 +34,7 @@ export function CartView() {
           Düfte entdecken
         </Link>
       </div>
+      </>
     );
 
   const ship = shippingFor(country, subtotalCents);
@@ -50,6 +60,8 @@ export function CartView() {
   }
 
   return (
+    <>
+    {removedNote}
     <div className="mt-10 grid gap-12 lg:grid-cols-[1.6fr_1fr]">
       <ul className="border-t border-ink">
         {lines.map((l) => (
@@ -132,5 +144,6 @@ export function CartView() {
         </p>
       </aside>
     </div>
+    </>
   );
 }

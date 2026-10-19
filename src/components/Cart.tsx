@@ -24,6 +24,7 @@ type CartCtx = {
   remove: (variantId: string) => void;
   clear: () => void;
   ready: boolean;
+  removed: number;
 };
 
 const Ctx = createContext<CartCtx | null>(null);
@@ -32,13 +33,42 @@ const KEY = "nadir-cart-v1";
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>([]);
   const [ready, setReady] = useState(false);
+  const [removed, setRemoved] = useState(0);
 
   useEffect(() => {
+    let stored: CartLine[] = [];
     try {
       const raw = localStorage.getItem(KEY);
-      if (raw) setLines(JSON.parse(raw));
+      if (raw) stored = JSON.parse(raw);
     } catch {}
+    setLines(stored);
     setReady(true);
+    if (!stored.length) return;
+
+    // Gespeicherten Warenkorb mit dem aktuellen Sortiment abgleichen:
+    // Name, Preis, Bild und Bestand aktualisieren, nicht mehr verfügbare Artikel entfernen.
+    fetch("/api/cart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ variantIds: stored.map((l) => l.variantId) }),
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { items: Omit<CartLine, "quantity">[] } | null) => {
+        if (!data) return;
+        const fresh = new Map(data.items.map((i) => [i.variantId, i]));
+        setLines((prev) => {
+          const next = prev
+            .filter((l) => fresh.has(l.variantId))
+            .map((l) => {
+              const f = fresh.get(l.variantId)!;
+              return { ...l, ...f, quantity: Math.min(l.quantity, Math.max(f.maxStock, 0)) };
+            })
+            .filter((l) => l.quantity > 0);
+          setRemoved(prev.length - next.length);
+          return next;
+        });
+      })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -86,8 +116,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       remove,
       clear,
       ready,
+      removed,
     }),
-    [lines, add, setQty, remove, clear, ready],
+    [lines, add, setQty, remove, clear, ready, removed],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
