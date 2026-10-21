@@ -35,7 +35,7 @@ export const products: Seed[] = [
     top: ["Oud", "Zypresse", "Veilchen"],
     heart: ["Himbeere", "Maiglöckchen", "Leder"],
     base: ["Amber", "Moschus", "Vanille"],
-    priceEuro: 149,
+    priceEuro: 79,
     images: [
       { url: "/images/products/aurelis.jpg", alt: "NADIR Aurelis Extrait de Parfum 50 ml, blauer Flakon mit Zitrone und Lavendel" },
       { url: "/images/products/aurelis-szene.jpg", alt: "Aurelis Flakon auf dunklem Stein mit Zitrusfrucht und Lavendel" },
@@ -53,7 +53,7 @@ export const products: Seed[] = [
     top: ["Bergamotte", "Mandarine", "Elemi"],
     heart: ["Orangenblüte", "Zimt", "Kardamom"],
     base: ["Bourbon-Vanille", "Guajakholz", "Praline"],
-    priceEuro: 149,
+    priceEuro: 79,
     images: [
       { url: "/images/products/essencia.jpg", alt: "NADIR Essencia Extrait de Parfum 50 ml, bernsteinfarbener Flakon mit Jasmin" },
       { url: "/images/products/essencia-szene.jpg", alt: "Essencia Flakon auf Marmor mit Jasminblüten, Holz und Bernstein" },
@@ -71,7 +71,7 @@ export const products: Seed[] = [
     top: ["Apfel", "Zimt", "Lavendel", "Rosenholz"],
     heart: ["Zedernholz", "Maiglöckchen", "Bulgarische Rose"],
     base: ["Amber", "Oud", "Moschus", "Sandelholz", "Vanille"],
-    priceEuro: 149,
+    priceEuro: 79,
     images: [
       { url: "/images/products/red-velvet.jpg", alt: "NADIR Red Velvet Extrait de Parfum 50 ml, roter Flakon mit Rosen" },
       { url: "/images/products/red-velvet-szene.jpg", alt: "Red Velvet Flakon zwischen roten Rosen und rotem Samt" },
@@ -82,6 +82,10 @@ export const products: Seed[] = [
 /** Beschreibungen der ersten Platzhalter-Version: nur Produkte mit genau diesem Text
  *  werden beim Deploy auf die echten Texte aktualisiert (Admin-Änderungen bleiben). */
 export const legacyDescriptions: Record<string, string> = {"aurelis": "Aurelis ist der kühle, klare Ausdruck von NADIR. Zitrus und Bergamotte öffnen hell und lebendig, Lavendel und ein mineralischer Akkord geben dem Herzen Ruhe und Weite. In der Basis bleiben Zedernholz und weicher Moschus nah an der Haut. Als Extrait de Parfum hoch konzentriert, mit einer Präsenz, die mühelos wirkt und lange bleibt.", "essencia": "Essencia ist das warme Herz von NADIR. Safran und Orangenblüte leuchten zu Beginn, bevor Jasmin und Bernstein eine dichte, goldene Mitte bilden. Oud, Labdanum und Vanille geben der Basis Tiefe und Wärme. Ein intimer Extrait de Parfum für Abende und Momente, die nachklingen sollen.", "red-velvet": "Red Velvet ist der intensivste Ausdruck von NADIR. Dunkle Kirsche und rosa Pfeffer eröffnen kraftvoll, im Herzen verbinden sich samtige Rose und Safran. Vanille, Sandelholz und Moschus tragen den Duft lange auf Haut und Kleidung. Kompromisslose Präsenz für einen Eindruck, der bleibt."};
+
+/** Platzhalterpreis der ersten Version (Cent): wird beim Deploy auf den echten Preis gesetzt,
+ *  solange er im Admin nicht geändert wurde. */
+export const legacyPriceCents = 14900;
 
 export function productData(p: Seed) {
   return {

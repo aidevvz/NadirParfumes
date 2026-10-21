@@ -26,8 +26,8 @@ export const shipping: Record<
   ShippingCountry,
   { label: string; priceCents: number; freeFromCents: number | null; days: [number, number]; carrier: string }
 > = {
-  AT: { label: "Österreich", priceCents: 490, freeFromCents: 8000, days: [2, 3], carrier: "Österreichische Post" },
-  DE: { label: "Deutschland", priceCents: 990, freeFromCents: 12000, days: [3, 5], carrier: "DHL (Straße)" },
+  AT: { label: "Österreich", priceCents: 490, freeFromCents: 10000, days: [2, 3], carrier: "Österreichische Post" },
+  DE: { label: "Deutschland", priceCents: 990, freeFromCents: 10000, days: [3, 5], carrier: "DHL (Straße)" },
   CH: { label: "Schweiz", priceCents: 1990, freeFromCents: null, days: [5, 8], carrier: "Österreichische Post (Straße)" },
 };
 

@@ -7,7 +7,7 @@
  * (Preise, Bestand, Texte) erhalten bleiben. Ohne DATABASE_URL wird nichts getan.
  */
 import { PrismaClient } from "@prisma/client";
-import { legacyDescriptions, oldSamples, products, productData } from "./catalog-data";
+import { legacyDescriptions, legacyPriceCents, oldSamples, products, productData } from "./catalog-data";
 
 async function main() {
   if (!process.env.DATABASE_URL) {
@@ -39,6 +39,12 @@ async function main() {
           });
           console.log(`[sync-catalog] ${p.name}: Texte und Duftnoten aktualisiert.`);
         }
+        // Platzhalterpreis (149 €) auf den echten Preis setzen, falls im Admin unverändert
+        const fixed = await db.variant.updateMany({
+          where: { productId: exists.id, priceCents: legacyPriceCents },
+          data: { priceCents: p.priceEuro * 100 },
+        });
+        if (fixed.count) console.log(`[sync-catalog] ${p.name}: Preis auf ${p.priceEuro} € gesetzt.`);
         continue;
       }
       await db.product.create({
