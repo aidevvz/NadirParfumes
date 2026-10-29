@@ -65,7 +65,7 @@ Stripe-Webhooks lokal testen: `stripe listen --forward-to localhost:3000/api/str
 - Design nach der Framer-Vorlage: Schwarz und Gold, große Serifen-Claims, jede Expression mit eigener Farbwelt.
 - Sortiment: **Aurelis, Essencia, Red Velvet** (Extrait de Parfum, 50 ml). Bilder unter `public/images/products/`, Logo unter `public/images/brand/`.
 - Redaktionelle Texte der Startseite (Claims, Teaser) in `src/lib/collection.ts`; Preise, Bestand und Duftnoten im Admin.
-- Preis 79 € je 50 ml, Versand in AT und DE ab 100 € kostenlos. PLATZHALTER: Bestand 20 und Kategorie „Unisex“.
+- Preis 79,90 € je 50 ml, Versand in AT und DE ab 100 € kostenlos. PLATZHALTER: Bestand 20 und Kategorie „Unisex“.
 - Nach dem Update einmal das Sortiment in der Produktions-Datenbank anlegen: `DATABASE_URL` setzen und `npm run db:seed` ausführen. Das entfernt die alten Beispieldüfte und legt die drei NADIR-Düfte an.
 
 ## Offene Punkte und Hinweise

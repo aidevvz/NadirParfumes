@@ -39,12 +39,12 @@ async function main() {
           });
           console.log(`[sync-catalog] ${p.name}: Texte und Duftnoten aktualisiert.`);
         }
-        // Platzhalterpreis (149 €) auf den echten Preis setzen, falls im Admin unverändert
+        // Frühere Preise (149 €, 79 €) auf den aktuellen Preis setzen, falls im Admin unverändert
         const fixed = await db.variant.updateMany({
-          where: { productId: exists.id, priceCents: legacyPriceCents },
-          data: { priceCents: p.priceEuro * 100 },
+          where: { productId: exists.id, priceCents: { in: legacyPriceCents } },
+          data: { priceCents: Math.round(p.priceEuro * 100) },
         });
-        if (fixed.count) console.log(`[sync-catalog] ${p.name}: Preis auf ${p.priceEuro} € gesetzt.`);
+        if (fixed.count) console.log(`[sync-catalog] ${p.name}: Preis auf ${p.priceEuro.toFixed(2)} € gesetzt.`);
         continue;
       }
       await db.product.create({
@@ -52,7 +52,7 @@ async function main() {
           slug: p.slug,
           ...productData(p),
           images: { create: p.images.map((img, i) => ({ url: img.url, alt: img.alt, position: i })) },
-          variants: { create: [{ sizeMl: 50, priceCents: p.priceEuro * 100, stock: 20, sku: `NAD-${p.slug.toUpperCase()}-50` }] },
+          variants: { create: [{ sizeMl: 50, priceCents: Math.round(p.priceEuro * 100), stock: 20, sku: `NAD-${p.slug.toUpperCase()}-50` }] },
         },
       });
       console.log(`[sync-catalog] ${p.name} angelegt.`);

@@ -26,7 +26,7 @@ async function main() {
     await db.variant.upsert({
       where: { sku },
       update: {},
-      create: { productId: prod.id, sizeMl: 50, priceCents: p.priceEuro * 100, stock: 20, sku },
+      create: { productId: prod.id, sizeMl: 50, priceCents: Math.round(p.priceEuro * 100), stock: 20, sku },
     });
   }
   console.log(`${products.length} NADIR-Düfte angelegt bzw. aktualisiert.`);
