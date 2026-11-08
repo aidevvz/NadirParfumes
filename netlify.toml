@@ -4,3 +4,16 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Alte Domain dauerhaft auf die neue weiterleiten (Pfad bleibt erhalten, z. B. QR-Codes)
+[[redirects]]
+  from = "https://nadirparfumes.com/*"
+  to = "https://nadirperfume.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.nadirparfumes.com/*"
+  to = "https://nadirperfume.com/:splat"
+  status = 301
+  force = true
