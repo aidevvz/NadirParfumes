@@ -24,7 +24,7 @@ export async function POST(req: Request) {
   const session = event.data.object as Stripe.Checkout.Session;
   switch (event.type) {
     case "checkout.session.completed":
-      // Karte, Apple/Google Pay, PayPal, Klarna: sofort "paid". Asynchrone Methoden folgen per async-Event.
+      // Karte, Apple/Google Pay, PayPal: sofort "paid". Asynchrone Methoden folgen per async-Event.
       if (session.payment_status === "paid") await markOrderPaid(session);
       break;
     case "checkout.session.async_payment_succeeded":

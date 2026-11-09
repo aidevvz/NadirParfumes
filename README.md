@@ -18,7 +18,7 @@ Eigenbau-Shop für eine eigene Parfummarke. Versand nach Österreich, Deutschlan
 - **Landing Page** und Katalog mit Kategorien (Damen, Herren, Unisex, Nische), Suche und Filtern (Duftfamilie, Größe, Preis)
 - **Produktseiten** mit Varianten (30/50/100 ml, je eigener Preis und Bestand), Duftpyramide, Grundpreis pro 100 ml und Lagerstatus
 - **Warenkorb** mit Lieferland-Auswahl; Versandkosten stehen vor dem Kauf fest
-- **Stripe Checkout** (Gastbestellung): Karte, EPS, PayPal, Klarna, Apple Pay, Google Pay. Preise werden immer serverseitig aus der Datenbank gerechnet.
+- **Stripe Checkout** (Gastbestellung): Karte, EPS, PayPal, Apple Pay, Google Pay. Preise werden immer serverseitig aus der Datenbank gerechnet.
 - **Webhook**: markiert Bestellungen als bezahlt, bucht den Bestand ab (idempotent), versendet Bestellbestätigung und Shop-Benachrichtigung und erfasst Warenkorbabbrüche
 - **Rechnungen**: Stripe erzeugt pro Bestellung eine Rechnung (`invoice_creation`), der Link steht in Bestätigungsmail und Admin
 - **Admin** `/admin`: Übersicht (zu versenden, Umsatz, Abbrüche, niedriger Bestand), Produkte anlegen und bearbeiten, Fotos hochladen, Bestand schnell ändern, Versand mit Sendungsnummer melden (Kunde bekommt Mail), Storno/Erstattung über Stripe
@@ -47,7 +47,7 @@ Stripe-Webhooks lokal testen: `stripe listen --forward-to localhost:3000/api/str
 3. Alle weiteren Variablen aus `.env.example` unter Settings → Environment Variables eintragen.
 4. Einmalig Tabellen anlegen: lokal mit der Produktions-`DATABASE_URL` `npx prisma db push` ausführen.
 5. **Stripe**:
-   - Dashboard → Einstellungen → Zahlungsmethoden: Karte, EPS, PayPal, Klarna, Apple Pay, Google Pay aktivieren
+   - Dashboard → Einstellungen → Zahlungsmethoden: Karte, EPS, PayPal, Apple Pay, Google Pay aktivieren
    - Entwickler → Webhooks: Endpoint `https://<domain>/api/stripe/webhook` mit den Events `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, `checkout.session.expired`. Das Signing-Secret kommt in `STRIPE_WEBHOOK_SECRET`.
    - Einstellungen → Rechnungen: Firmendaten, UID-Nummer und Rechnungsnummernkreis hinterlegen (Pflichtangaben nach § 11 UStG)
    - Einstellungen → Kunden-E-Mails: „Erfolgreiche Zahlungen“ aktivieren, damit Stripe die Rechnung mitschickt

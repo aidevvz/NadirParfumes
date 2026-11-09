@@ -138,7 +138,7 @@ export function CartView() {
         </button>
         {error && <p role="alert" className="mt-3 text-sm text-danger">{error}</p>}
         <p className="mt-4 text-xs leading-relaxed text-mist">
-          Sie zahlen auf der sicheren Seite von Stripe mit Karte, EPS, PayPal, Klarna, Apple Pay oder Google Pay.
+          Sie zahlen auf der sicheren Seite von Stripe mit Karte, EPS, PayPal, Apple Pay oder Google Pay.
           Gutscheincodes geben Sie dort ein. Es gelten unsere <Link href="/agb" className="underline">AGB</Link> und die{" "}
           <Link href="/widerruf" className="underline">Widerrufsbelehrung</Link>.
         </p>

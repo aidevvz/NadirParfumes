@@ -4,7 +4,7 @@ import { euro } from "@/lib/money";
 
 export const metadata: Metadata = {
   title: "Versand und Zahlung",
-  description: "Versandkosten und Lieferzeiten nach Österreich, Deutschland und in die Schweiz. Zahlung mit EPS, Klarna, PayPal, Karte, Apple Pay und Google Pay.",
+  description: "Versandkosten und Lieferzeiten nach Österreich, Deutschland und in die Schweiz. Zahlung mit EPS, PayPal, Karte, Apple Pay und Google Pay.",
   alternates: { canonical: "/versand-zahlung" },
 };
 
@@ -46,7 +46,6 @@ export default function VersandZahlung() {
           <li>Kreditkarte (Visa, Mastercard, American Express)</li>
           <li>EPS-Überweisung (österreichische Banken)</li>
           <li>PayPal</li>
-          <li>Klarna: Rechnung oder Ratenkauf</li>
           <li>Apple Pay und Google Pay</li>
         </ul>
         <p>Die Zahlung läuft vollständig über Stripe. Karten- und Kontodaten werden nicht auf unseren Servern gespeichert. Gutscheincodes geben Sie auf der Zahlungsseite ein.</p>

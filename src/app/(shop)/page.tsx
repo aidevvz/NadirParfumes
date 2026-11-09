@@ -110,7 +110,7 @@ export default async function Home() {
         <ul className="mt-24 grid border-y border-line text-center text-sm text-mist sm:grid-cols-3 sm:divide-x sm:divide-line">
           <li className="py-5">Versand in Österreich in {shipping.AT.days[0]}–{shipping.AT.days[1]} Werktagen, ab {euro(shipping.AT.freeFromCents!)} kostenlos</li>
           <li className="border-t border-line py-5 sm:border-t-0">14 Tage Rücktrittsrecht ab Erhalt</li>
-          <li className="border-t border-line py-5 sm:border-t-0">Sicher bezahlen mit EPS, Klarna, PayPal oder Karte</li>
+          <li className="border-t border-line py-5 sm:border-t-0">Sicher bezahlen mit EPS, PayPal oder Karte</li>
         </ul>
       </section>
 

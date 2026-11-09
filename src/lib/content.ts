@@ -24,7 +24,7 @@ export const faqs = [
   },
   {
     q: "Welche Zahlungsarten gibt es?",
-    a: "Sie zahlen sicher über Stripe mit Kreditkarte, EPS-Überweisung, PayPal, Klarna (Rechnung oder Ratenkauf), Apple Pay oder Google Pay. Ihre Zahlungsdaten werden nie auf unseren Servern gespeichert.",
+    a: "Sie zahlen sicher über Stripe mit Kreditkarte, EPS-Überweisung, PayPal, Apple Pay oder Google Pay. Ihre Zahlungsdaten werden nie auf unseren Servern gespeichert.",
   },
   {
     q: "Was bedeuten Kopf-, Herz- und Basisnote?",
