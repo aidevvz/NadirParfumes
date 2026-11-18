@@ -16,7 +16,7 @@ export const faqs = [
   },
   {
     q: "Wohin liefern Sie und wie lange dauert der Versand?",
-    a: "Wir liefern nach Österreich (2–3 Werktage), Deutschland (3–5 Werktage) und in die Schweiz (5–8 Werktage). Weil Parfum Alkohol enthält, gilt es im Versand als Gefahrgut in begrenzter Menge und wird ausschließlich auf dem Landweg transportiert. Expressversand per Luftfracht ist deshalb nicht möglich.",
+    a: "Wir liefern nach Österreich (3–4 Werktage), Deutschland (3–5 Werktage) und in die Schweiz (5–8 Werktage). Weil Parfum Alkohol enthält, gilt es im Versand als Gefahrgut in begrenzter Menge und wird ausschließlich auf dem Landweg transportiert. Expressversand per Luftfracht ist deshalb nicht möglich.",
   },
   {
     q: "Kann ich ein Parfum zurückgeben?",
