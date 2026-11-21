@@ -54,7 +54,7 @@ export function categoryFromSlug(slug: string): CategoryKey | null {
 /** Pflichtangaben für alle NADIR-Düfte (Produktseite). */
 export const productInfo = {
   ingredients:
-    "Alcohol Denat., Parfum, Aqua, Ethylhexyl Methoxycinnamate, Butyl Methoxydibenzoylmethane, Ethylhexyl Salicylate, CI 5985, CI 60730, CI 17200.",
+    "Alcohol Denat. (40 % vol), Parfum, Aqua, Ethylhexylmethoxycinnamat, Butylmethoxydibenzoylmethan, Ethylhexylsalicylat, CI 5985, CI 60730, CI 17200.",
   safety:
     "Leicht entzündlich. Von offenen Flammen, Funken und anderen Zündquellen fernhalten. Nicht in Richtung der Augen sprühen. Nur zur äußerlichen Anwendung. Außerhalb der Reichweite von Kindern aufbewahren.",
 };
