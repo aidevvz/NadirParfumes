@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Flakon } from "./Flakon";
-import { concentrationLabel } from "@/lib/config";
 import { fromPrice, inStock, productPath, type ProductFull } from "@/lib/catalog";
 import { euro } from "@/lib/money";
 
@@ -37,7 +36,7 @@ export function ProductCard({ p, priority = false }: { p: ProductFull; priority?
           <p className="shrink-0 text-[0.95rem]">{p.variants.length > 1 ? "ab " : ""}{euro(fromPrice(p))}</p>
         </div>
         <p className="label mt-3 text-gold-deep">
-          {concentrationLabel[p.concentration]} / {p.variants.map((v) => `${v.sizeMl} ml`).join(", ")}
+          {p.variants.map((v) => `${v.sizeMl} ml`).join(", ")}
         </p>
         <p className="mt-3 max-w-sm text-[0.95rem] text-ink/75">{p.shortDescription}</p>
       </Link>

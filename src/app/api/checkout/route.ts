@@ -3,7 +3,7 @@ import { z } from "zod";
 import type Stripe from "stripe";
 import { db } from "@/lib/db";
 import { stripe } from "@/lib/stripe";
-import { concentrationLabel, shop, shippingFor, type ShippingCountry } from "@/lib/config";
+import { shop, shippingFor, type ShippingCountry } from "@/lib/config";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
 
 const Body = z.object({
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
       unit_amount: v.priceCents,
       ...(automaticTax && { tax_behavior: "inclusive" as const }),
       product_data: {
-        name: `${v.product.name}, ${concentrationLabel[v.product.concentration]} ${v.sizeMl} ml`,
+        name: `${v.product.name}, ${v.sizeMl} ml`,
         metadata: { sku: v.sku, variantId: v.id },
       },
     },

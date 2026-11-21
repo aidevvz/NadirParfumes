@@ -24,7 +24,7 @@ async function main() {
       if (exists) {
         // Platzhaltertexte der ersten Version durch die echten Texte ersetzen,
         // aber nur wenn sie im Admin noch nicht geändert wurden.
-        if (exists.description === legacyDescriptions[p.slug]) {
+        if (legacyDescriptions[p.slug]?.includes(exists.description)) {
           const d = productData(p);
           await db.product.update({
             where: { id: exists.id },

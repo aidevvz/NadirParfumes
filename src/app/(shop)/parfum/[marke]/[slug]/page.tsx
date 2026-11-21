@@ -4,10 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BuyBox } from "@/components/BuyBox";
 import { Flakon } from "@/components/Flakon";
-import { ScentPyramid } from "@/components/ScentPyramid";
 import { ProductCard } from "@/components/ProductCard";
 import { JsonLd } from "@/components/JsonLd";
-import { categories, concentrationLabel, shipping } from "@/lib/config";
+import { categories, productInfo, shipping } from "@/lib/config";
 import { getProduct, productInclude, productPath, fromPrice } from "@/lib/catalog";
 import { breadcrumbLd, productLd } from "@/lib/seo";
 import { db } from "@/lib/db";
@@ -22,7 +21,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { marke, slug } = await params;
   const p = await getProduct(marke, slug);
   if (!p) return {};
-  const title = `${p.name} ${concentrationLabel[p.concentration]} ab ${euro(fromPrice(p))}`;
+  const title = `${p.name} ab ${euro(fromPrice(p))}`;
   const image = p.images[0]?.url ?? `/api/og/${p.slug}`;
   return {
     title,
@@ -74,9 +73,7 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
 
         {/* Kaufbereich */}
         <div className="md:sticky md:top-28 md:self-start">
-          <p className="label text-gold-deep">
-            {exp ? `Duft ${exp.no} / ` : ""}{concentrationLabel[p.concentration]}
-          </p>
+          {exp && <p className="label text-gold-deep">Duft {exp.no}</p>}
           <h1 className="claim mt-5 text-[clamp(3rem,6vw,5rem)]">{p.name}</h1>
           {exp && <p className="mt-4 font-display text-2xl">{exp.headline}</p>}
           {exp && <p className="label mt-5 text-ink/80">{exp.keywords}</p>}
@@ -103,26 +100,25 @@ export default async function ProductPage({ params, searchParams }: { params: Pa
     </div>
     </div>
     <div className="mx-auto max-w-7xl px-5 md:px-10">
-      {/* Beschreibung und Duftnoten */}
-      <div className="mt-24 grid gap-14 md:grid-cols-2 md:gap-20">
+      {/* Produktbeschreibung, Inhaltsstoffe, Sicherheitshinweise */}
+      <div className="mt-24 grid gap-14 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:gap-20">
         <section>
-          <h2 className="text-3xl md:text-4xl">Über {p.name}</h2>
-          {!p.description.startsWith(p.shortDescription) && <p className="mt-5 leading-relaxed text-ink/85">{p.description}</p>}
-          <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-6 text-sm">
-            <div><dt className="text-mist">Marke</dt><dd>{p.brandName}</dd></div>
-            <div><dt className="text-mist">Konzentration</dt><dd>{concentrationLabel[p.concentration]}</dd></div>
-            <div><dt className="text-mist">Duftfamilie</dt><dd>{p.fragranceFamily}</dd></div>
-            <div><dt className="text-mist">Für</dt><dd>{cat.label}</dd></div>
-            <div><dt className="text-mist">Größen</dt><dd>{p.variants.map((v) => `${v.sizeMl} ml`).join(", ")}</dd></div>
-            <div><dt className="text-mist">Artikelnummer</dt><dd>{p.variants[0]?.sku.replace(/-\d+$/, "")}</dd></div>
-          </dl>
+          <h2 className="text-3xl md:text-4xl">Produktbeschreibung</h2>
+          {exp && <p className="mt-6 font-display text-2xl">{exp.headline}</p>}
+          {p.description.split(/\n\s*\n/).map((para, i) => (
+            <p key={i} className="mt-5 leading-relaxed text-ink/85">{para}</p>
+          ))}
         </section>
-        <section>
-          <h2 className="text-3xl md:text-4xl">Duftnoten</h2>
-          <div className="mt-6">
-            <ScentPyramid top={p.topNotes} heart={p.heartNotes} base={p.baseNotes} />
-          </div>
-        </section>
+        <div className="space-y-12">
+          <section>
+            <h2 className="text-2xl md:text-3xl">Inhaltsstoffe</h2>
+            <p className="mt-5 text-sm leading-relaxed text-ink/80">{productInfo.ingredients}</p>
+          </section>
+          <section>
+            <h2 className="text-2xl md:text-3xl">Sicherheitshinweise</h2>
+            <p className="mt-5 text-sm leading-relaxed text-ink/80">{productInfo.safety}</p>
+          </section>
+        </div>
       </div>
 
       {related.length > 0 && (
