@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
-import { shop } from "@/lib/config";
+import { companyLine, shop } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Widerrufsbelehrung und Rücktrittsrecht", alternates: { canonical: "/widerruf" } };
 
@@ -14,7 +14,7 @@ export default function Widerruf() {
         Beförderer ist, die Waren in Besitz genommen haben bzw. hat.
       </p>
       <p>
-        Um Ihr Rücktrittsrecht auszuüben, müssen Sie uns ([Firmenname], [Adresse], {shop.city}, E-Mail: {shop.email}) mittels
+        Um Ihr Rücktrittsrecht auszuüben, müssen Sie uns ({companyLine}, E-Mail: {shop.email}) mittels
         einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder E-Mail) über Ihren Entschluss, von diesem
         Vertrag zurückzutreten, informieren. Sie können dafür das unten stehende Muster-Widerrufsformular verwenden, das
         jedoch nicht vorgeschrieben ist. Zur Wahrung der Rücktrittsfrist reicht es aus, dass Sie die Mitteilung vor Ablauf
@@ -40,15 +40,15 @@ export default function Widerruf() {
       </p>
       <h2>Ausschluss des Rücktrittsrechts</h2>
       <p>
-        [Rechtlich prüfen:] Das Rücktrittsrecht besteht nicht bei versiegelten Waren, die aus Gründen des Gesundheitsschutzes
+        Das Rücktrittsrecht besteht nicht bei versiegelten Waren, die aus Gründen des Gesundheitsschutzes
         oder aus Hygienegründen nicht zur Rückgabe geeignet sind, sofern deren Versiegelung nach der Lieferung entfernt wurde
-        (§ 18 Abs. 1 Z 5 FAGG). Ob und wann das für Parfum gilt, ist nicht eindeutig geklärt.
+        (§ 18 Abs. 1 Z 5 FAGG).
       </p>
 
       <h2>Muster-Widerrufsformular</h2>
       <p>(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.)</p>
       <div className="border border-line bg-veil p-6 text-[0.95rem]">
-        <p>An [Firmenname], [Adresse], {shop.city}, E-Mail: {shop.email}</p>
+        <p>An {companyLine}, E-Mail: {shop.email}</p>
         <p>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über den Kauf der folgenden Waren (*):</p>
         <p>Bestellt am (*) / erhalten am (*):</p>
         <p>Name des/der Verbraucher(s):</p>

@@ -8,13 +8,27 @@ export const shop = {
   claim: "Exklusivität im Flakon.",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
   email: "office@nadirperfume.com",
-  phone: "+43 1 000 00 00", // PLATZHALTER
-  city: "Wien",
+  city: "Klagenfurt am Wörthersee",
   country: "AT",
   vatRate: 0.2,
   currency: "eur",
   locale: "de-AT",
 } as const;
+
+/** Rechtliche Angaben des Unternehmens hinter dem Shop (Impressum, AGB, Datenschutz, Widerruf). */
+export const company = {
+  name: "ET Cars Rent GmbH",
+  legalForm: "Gesellschaft mit beschränkter Haftung (GmbH)",
+  street: "Ortnergasse 15",
+  zip: "9020",
+  city: "Klagenfurt am Wörthersee",
+  country: "Österreich",
+  fn: "FN 682302k",
+  court: "Landesgericht Klagenfurt",
+} as const;
+
+/** Firmenname und Anschrift in einer Zeile */
+export const companyLine = `${company.name}, ${company.street}, ${company.zip} ${company.city}, ${company.country}`;
 
 export type ShippingCountry = "AT" | "DE" | "CH";
 

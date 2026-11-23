@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
-import { shop } from "@/lib/config";
+import { companyLine, shop } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Datenschutzerklärung", alternates: { canonical: "/datenschutz" } };
 
@@ -8,7 +8,7 @@ export default function Datenschutz() {
   return (
     <LegalPage title="Datenschutzerklärung">
       <h2>Verantwortlicher</h2>
-      <p>[Firmenname], [Adresse], {shop.city}, E-Mail: {shop.email}</p>
+      <p>{companyLine}, E-Mail: {shop.email}</p>
 
       <h2>Welche Daten wir verarbeiten und warum</h2>
       <h3>Bestellungen</h3>
@@ -24,13 +24,13 @@ export default function Datenschutz() {
         übermitteln; Grundlage ist der EU-US Data Privacy Framework bzw. Standardvertragsklauseln.
       </p>
       <h3>Versand</h3>
-      <p>Für die Zustellung geben wir Name und Lieferadresse an den Versanddienst weiter ([Österreichische Post AG, DHL]).</p>
+      <p>Für die Zustellung geben wir Name und Lieferadresse an den Versanddienst weiter (Österreichische Post AG, DHL).</p>
       <h3>E-Mails</h3>
-      <p>Bestell- und Versandbestätigungen versenden wir über [Resend, Inc., USA], auf Grundlage von Standardvertragsklauseln.</p>
+      <p>Bestell- und Versandbestätigungen versenden wir über Resend, Inc., USA, auf Grundlage von Standardvertragsklauseln.</p>
       <h3>Kontaktformular</h3>
       <p>Ihre Nachricht und Kontaktdaten verwenden wir nur zur Beantwortung Ihrer Anfrage (Art. 6 Abs. 1 lit. b bzw. f DSGVO) und löschen sie nach Abschluss, sofern keine Aufbewahrungspflicht besteht.</p>
       <h3>Hosting</h3>
-      <p>Der Shop wird bei [Vercel Inc., USA] gehostet, die Datenbank bei [Neon Inc., Rechenzentrum Frankfurt]. Beim Aufruf werden technisch notwendige Daten wie IP-Adresse und Zeitpunkt in Server-Logs verarbeitet (Art. 6 Abs. 1 lit. f DSGVO).</p>
+      <p>Der Shop wird bei Netlify, Inc., USA, gehostet, die Datenbank bei Neon, Inc. (Rechenzentrum Frankfurt). Grundlage für Übermittlungen in die USA sind der EU-US Data Privacy Framework bzw. Standardvertragsklauseln. Beim Aufruf werden technisch notwendige Daten wie IP-Adresse und Zeitpunkt in Server-Logs verarbeitet (Art. 6 Abs. 1 lit. f DSGVO).</p>
 
       <h2>Cookies, lokale Speicherung und Analyse</h2>
       <p>

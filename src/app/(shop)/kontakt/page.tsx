@@ -12,7 +12,6 @@ export default function Kontakt() {
         <p className="mt-6 text-mist">Fragen zu einem Duft, zu Ihrer Bestellung oder einer Rücksendung? Wir antworten werktags innerhalb von 24 Stunden.</p>
         <dl className="mt-8 space-y-3">
           <div><dt className="text-sm text-mist">E-Mail</dt><dd><a href={`mailto:${shop.email}`} className="underline">{shop.email}</a></dd></div>
-          <div><dt className="text-sm text-mist">Telefon</dt><dd>{shop.phone}</dd></div>
         </dl>
       </div>
       <ContactForm />

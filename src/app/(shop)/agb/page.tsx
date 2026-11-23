@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
-import { shop } from "@/lib/config";
+import { company, shop } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Allgemeine Geschäftsbedingungen", alternates: { canonical: "/agb" } };
 
@@ -9,7 +9,7 @@ export default function AGB() {
   return (
     <LegalPage title="Allgemeine Geschäftsbedingungen">
       <h2>1. Geltungsbereich</h2>
-      <p>Diese AGB gelten für alle Bestellungen über {shop.url.replace(/^https?:\/\//, "")} bei [Firmenname] („wir“). Gegenüber Verbrauchern gelten zwingende gesetzliche Bestimmungen vorrangig.</p>
+      <p>Diese AGB gelten für alle Bestellungen über {shop.url.replace(/^https?:\/\//, "")} bei der {company.name}, {company.street}, {company.zip} {company.city}, {company.fn} („wir“). Gegenüber Verbrauchern gelten zwingende gesetzliche Bestimmungen vorrangig.</p>
       <h2>2. Vertragsschluss</h2>
       <p>Die Darstellung der Produkte ist kein bindendes Angebot. Mit Klick auf „Bezahlen“ auf der Zahlungsseite geben Sie ein verbindliches, zahlungspflichtiges Angebot ab. Der Vertrag kommt mit unserer Bestellbestätigung per E-Mail zustande. Vertragssprache ist Deutsch.</p>
       <h2>3. Preise und Versandkosten</h2>
