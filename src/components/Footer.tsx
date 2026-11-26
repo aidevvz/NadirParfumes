@@ -2,12 +2,7 @@ import Link from "next/link";
 import { shop, shipping } from "@/lib/config";
 import { euro } from "@/lib/money";
 import { ConsentLink } from "./CookieConsent";
-
-// PLATZHALTER: echte Profil-Links eintragen
-const social = [
-  { href: "https://www.instagram.com/", label: "Instagram" },
-  { href: "https://www.tiktok.com/", label: "TikTok" },
-];
+import { InstagramIcon, TikTokIcon } from "./SocialIcons";
 
 export function Footer() {
   return (
@@ -29,14 +24,21 @@ export function Footer() {
         />
         <div>
           <p className="label text-gold-deep">NADIR folgen</p>
-          <ul className="mt-5 space-y-3">
-            {social.map((s) => (
-              <li key={s.label}>
-                <a className="hover:text-gold-deep" href={s.href} target="_blank" rel="noopener noreferrer">
-                  {s.label}
-                </a>
-              </li>
-            ))}
+          <ul className="mt-5 space-y-4">
+            <li>
+              <a href={shop.instagram} target="_blank" rel="noopener noreferrer" aria-label="NADIR auf Instagram"
+                className="inline-flex items-center gap-3 text-ink transition-colors hover:text-gold-deep">
+                <InstagramIcon size={24} />
+                <span className="text-[0.95rem]">@nadirperfume</span>
+              </a>
+            </li>
+            <li>
+              <a href={shop.tiktok} target="_blank" rel="noopener noreferrer" aria-label="NADIR auf TikTok"
+                className="inline-flex items-center gap-3 text-ink transition-colors hover:text-gold-deep">
+                <TikTokIcon size={24} />
+                <span className="text-[0.95rem]">@nadir.perfume</span>
+              </a>
+            </li>
           </ul>
         </div>
         <div>

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCart } from "./Cart";
 import { shop } from "@/lib/config";
+import { InstagramIcon, TikTokIcon } from "./SocialIcons";
 
 const nav = [
   { href: "/#collection", label: "Kollektion" },
@@ -88,6 +89,24 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-5">
+            <a
+              href={shop.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="NADIR auf Instagram"
+              className="p-1 transition-colors hover:text-gold-deep"
+            >
+              <InstagramIcon />
+            </a>
+            <a
+              href={shop.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="NADIR auf TikTok"
+              className="p-1 transition-colors hover:text-gold-deep"
+            >
+              <TikTokIcon />
+            </a>
             <Link href="/parfums" className="label hidden text-ink hover:text-gold-deep sm:inline">
               Shop
             </Link>

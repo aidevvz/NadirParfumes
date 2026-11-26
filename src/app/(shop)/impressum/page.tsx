@@ -23,6 +23,7 @@ export default function Impressum() {
       <p>
         Firmenbuchnummer: {company.fn}<br />
         Firmenbuchgericht: {company.court}<br />
+        UID-Nummer: {company.uid}<br />
         Sitz: {company.city}
       </p>
       <h2>Gewerbe und Aufsicht</h2>

@@ -13,6 +13,8 @@ export const shop = {
   vatRate: 0.2,
   currency: "eur",
   locale: "de-AT",
+  instagram: "https://www.instagram.com/nadirperfume",
+  tiktok: "https://www.tiktok.com/@nadir.perfume",
 } as const;
 
 /** Rechtliche Angaben des Unternehmens hinter dem Shop (Impressum, AGB, Datenschutz, Widerruf). */
@@ -24,6 +26,7 @@ export const company = {
   city: "Klagenfurt am Wörthersee",
   country: "Österreich",
   fn: "FN 682302k",
+  uid: "ATU83431939",
   court: "Landesgericht Klagenfurt",
 } as const;
 

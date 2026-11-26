@@ -9,6 +9,7 @@ export const organizationLd = () => ({
   logo: `${shop.url}/icon.svg`,
   email: shop.email,
   address: { "@type": "PostalAddress", addressLocality: shop.city, addressCountry: shop.country },
+  sameAs: [shop.instagram, shop.tiktok],
 });
 
 export const websiteLd = () => ({
