@@ -8,6 +8,7 @@ import { Filters } from "@/components/Filters";
 import { JsonLd } from "@/components/JsonLd";
 import { categories, categoryFromSlug } from "@/lib/config";
 import { findProducts } from "@/lib/catalog";
+import { db } from "@/lib/db";
 import { breadcrumbLd } from "@/lib/seo";
 
 type Params = Promise<{ slug: string }>;
@@ -48,7 +49,10 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params;
   const key = categoryFromSlug(slug);
   if (!key) return {};
+  // Leere Kategorien nicht indexieren (dünner Inhalt)
+  const count = await db.product.count({ where: { active: true, category: key } });
   return {
+    ...(count === 0 ? { robots: { index: false, follow: true } } : {}),
     title: seoText[slug].title,
     description: `${categories[key].intro} ${seoText[slug].text[0]}`.slice(0, 158),
     alternates: { canonical: `/kategorie/${slug}` },
